@@ -9,7 +9,6 @@
 <%@ include file="components/navigation.jspf"%>
 
 <!-- Page Content -->
-<title>TeamTuur</title>
 
 <div class="container">
     <div class="row">
