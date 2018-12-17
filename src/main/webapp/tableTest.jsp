@@ -23,7 +23,8 @@
             <h2 id="pageTitle">Hello world!</h2>
         </div>
     </div>
-
+<article>This is article</article>
+    <aside>This is aside</aside>
     <table class="table">
         <thead>
         <tr>
