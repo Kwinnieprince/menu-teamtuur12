@@ -14,6 +14,7 @@
     <div class="row">
         <div class="col-md-8 well">
             <h2 id="pageTitle">Hello world!</h2>
+            <a href="tableTest.jsp">Test Table</a>
         </div>
     </div>
 </div>
