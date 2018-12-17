@@ -37,5 +37,4 @@ public class HomePageTest extends BaseUITest {
         assertEquals("Create an account", signUpPage.getPageTitle());
 
     }
-
 }
