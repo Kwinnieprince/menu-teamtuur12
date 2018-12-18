@@ -11,16 +11,6 @@ public class DummyUserData {
                 "admin" // password
         );
 
-        userRepository.createUser(
-                new User(
-                        "bob",
-                        "Bob",
-                        "Van der Smissen",
-                        "bob@iswleuven.be",
-                        Gender.MALE, Role.ADMIN
-                ),
-                "bob"
-        );
 
         userRepository.createUser(
                 new User("support",
