@@ -15,7 +15,7 @@ public class DummyUserData {
                 new User("bob",
                         "bob", "user",
                         "bob@example.com",
-                        Gender.MALE, Role.SUPPORT
+                        Gender.MALE, Role.CAMPUSADMIN
                 ),
                 "bob123" // password
         );
@@ -24,25 +24,9 @@ public class DummyUserData {
                 new User("support",
                         "support", "user",
                         "support@example.com",
-                        Gender.MALE, Role.SUPPORT
+                        Gender.MALE, Role.CAMPUSADMIN
                 ),
                 "support" // password
-        );
-        userRepository.createUser(
-                new User("user",
-                        "simple", "user",
-                        "user@example.com",
-                        Gender.FEMALE, Role.USER
-                ),
-                "user" // password
-        );
-        userRepository.createUser(
-                new User("user2",
-                        "simple2", "user",
-                        "user2@example.com",
-                        Gender.MALE, Role.USER
-                ),
-                "user2" // password
         );
     }
 }

@@ -29,9 +29,9 @@ public class UserTest extends BaseUITest {
         user.setFirstName("firstName");
         user.setLastName("lastName");
         user.setGender(Gender.MALE);
-        user.setRole(Role.USER);
+        user.setRole(Role.ADMIN);
 
-        user = new User(userName, "firstName", "lastName", userName + "@email.com", Gender.MALE, Role.USER);
+        user = new User(userName, "firstName", "lastName", userName + "@email.com", Gender.MALE, Role.ADMIN);
         user.hashAndSetPassword(password);
 
         System.out.println(user.getUserName());
