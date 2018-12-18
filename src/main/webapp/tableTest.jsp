@@ -20,7 +20,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 well">
-            <h2 id="pageTitle">Hello world!</h2>
+            <h2 id="pageTitle">Menu campus {Campus ...}</h2> <!-- TODO get campus from enum -->
         </div>
     </div>
     <div class="row">
@@ -28,10 +28,12 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Soort</th>
+                    <th scope="col">Maandag</th>
+                    <th scope="col">Dinsdag</th>
+                    <th scope="col">Woensdag</th>
+                    <th scope="col">Donderdag</th>
+                    <th scope="col">Vrijdag</th>
                 </tr>
                 </thead>
                 <tbody>
