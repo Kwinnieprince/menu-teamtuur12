@@ -10,16 +10,7 @@ public class DummyUserData {
                 ),
                 "admin" // password
         );
-
-        userRepository.createUser(
-                new User("bob",
-                        "bob", "user",
-                        "bob@example.com",
-                        Gender.MALE, Role.ADMIN
-                ),
-                "bob" // password
-        );
-
+        
         userRepository.createUser(
                 new User("support",
                         "support", "user",
