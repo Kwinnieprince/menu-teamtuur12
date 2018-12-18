@@ -1,4 +1,4 @@
-package ucll.project.domain.user;
+package ucll.project.domain.model.user;
 
 import org.junit.Test;
 
