@@ -1,4 +1,4 @@
-package ucll.project.domain.user;
+package ucll.project.domain.model.user;
 
 import javax.xml.bind.DatatypeConverter;
 import java.nio.charset.StandardCharsets;
