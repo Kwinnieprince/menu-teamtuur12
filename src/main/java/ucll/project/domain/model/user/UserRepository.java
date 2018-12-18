@@ -1,11 +1,12 @@
 package ucll.project.domain.model.user;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserRepository {
 
     // CREATE
-    void createUser(User user, String password);
+    void createUser(User user, String password) throws SQLException;
 
     // READ ONE
     User get(int userId);
