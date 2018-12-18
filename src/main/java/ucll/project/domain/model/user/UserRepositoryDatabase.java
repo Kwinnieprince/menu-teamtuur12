@@ -47,11 +47,6 @@ public class UserRepositoryDatabase implements UserRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-
-
-
-
     }
 
     private int getRoleId(Role role) {
@@ -78,13 +73,51 @@ public class UserRepositoryDatabase implements UserRepository {
 
     @Override
     public User get(int userId) {
-        return null;
+        User u = new User();
+
+        try {
+            this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE userid = ?");
+            statement.setInt(1, userId);
+
+
+            ResultSet set = statement.executeQuery();
+            while (set.next()) {
+                u = makeUser(set);
+            }
+
+            statement.close();
+            connection.close();
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return u;
     }
 
     private User makeUser(ResultSet set) {
         User u = new User();
         try {
             while (set.next()) {
+                u.setUserId(set.getInt("userid"));
+                u.setUserName(set.getString("username"));
+                u.setFirstName(set.getString("firstname"));
+                u.setLastName(set.getString("lastname"));
+                u.setEmail(set.getString("email"));
+
+                if(set.getString("gender").equals("FEMALE")) {
+                    u.setGender(Gender.FEMALE);
+                } else {
+                    u.setGender(Gender.MALE);
+                }
+                u.setHashedPassword(set.getString("password"));
+
+                if(set.getInt("roleid") == 1) {
+                    u.setRole(Role.ADMIN);
+                } else {
+                    u.setRole(Role.CAMPUSADMIN);
+                }
             }
         } catch (SQLException e) {
             e.getErrorCode();
@@ -99,9 +132,7 @@ public class UserRepositoryDatabase implements UserRepository {
         try {
             this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");
-
-
-
+            
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 User u = makeUser(set);
