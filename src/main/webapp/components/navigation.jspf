@@ -11,11 +11,8 @@
         <div class="collapse navbar-collapse" id="navbarExample">
             <ul class="navbar-nav ml-auto">
                 <c:if test="${not empty user}">
-                    <c:if test="${user.role == Role.ADMIN}">
-                        <li class="nav-item"><a href="edit/dish">Add Item</a></li>
-                    </c:if>
+                    <li class="nav-item"><a class="nav-link" href="dish/add">Add Item</a></li>
                 </c:if>
-
                 <c:if test="${empty user}">
                     <%-- The c:out will return active when the requested url matches /user/login --%>
                     <li class="nav-item <c:out value = "${requestScope['javax.servlet.forward.request_uri'] == '/user/login' ? 'active' : ''}"/>">
