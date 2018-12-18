@@ -182,3 +182,8 @@ blockquote {
 .chat button {
     border-top-right-radius: 0;
 }
+
+/*added by thomas*/
+.bg-inverse {
+    background-color: #e00049 !important;
+}

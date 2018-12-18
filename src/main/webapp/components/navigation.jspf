@@ -7,7 +7,11 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="container">
-        <a class="navbar-brand" href="/">Application</a>
+        <a href="/">
+            <span class="logo">
+                <img src="https://intranet.ucll.be/sites/all/themes/ucll_intranet/images/logo.svg" alt="logo UCLL">
+            </span>
+        </a>
         <div class="collapse navbar-collapse" id="navbarExample">
             <ul class="navbar-nav ml-auto">
                 <c:if test="${not empty user}">
