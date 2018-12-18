@@ -45,6 +45,13 @@
                         <input id="externalPrice" type="number" step="any" min="0" class="form-control" name="externalPrice" value="${externalPrice}" placeholder="External Price" required>
                     </div>
                     <div class="form-group">
+                        <select id="category" class="form-control" name="category" value="${externalPrice}" required>
+                            <c:forEach var="cat" items="${categories}">
+                                <option value="${cat}">${cat}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <button id="submitButton" class="btn btn-lg btn-primary btn-block" type="submit">Add Item</button>
                     </div>
                 </form>

@@ -1,6 +1,12 @@
 body {
     padding-top: 54px;
     background: url("./concrete-texture.png");
+    font-size: 1rem;
+}
+
+a {
+    color: #003469;
+    text-decoration: none;
 }
 
 @media (min-width: 992px) {
@@ -186,4 +192,16 @@ blockquote {
 /*added by thomas*/
 .bg-inverse {
     background-color: #e00049 !important;
+}
+
+.navbar-inverse .navbar-nav .nav-link {
+    color: rgba(255,255,255,1);
+}
+
+.btn-primary {
+    background-color: #003469;
+    border-color: #003469;
+}
+option {
+    text-transform: lowercase;
 }
