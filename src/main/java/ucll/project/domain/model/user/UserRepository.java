@@ -6,7 +6,7 @@ import java.util.List;
 public interface UserRepository {
 
     // CREATE
-    void createUser(User user, String password) throws SQLException;
+    void createUser(User user, String password);
 
     // READ ONE
     User get(int userId);
