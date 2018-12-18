@@ -20,6 +20,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 well">
+            <br>
             <h2 id="pageTitle">Menu campus {Campus ...}</h2> <!-- TODO get campus from enum -->
         </div>
     </div>
