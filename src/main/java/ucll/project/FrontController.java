@@ -1,8 +1,8 @@
 package ucll.project;
 
 import ucll.project.controller.UserController;
-import ucll.project.domain.user.UserRepository;
-import ucll.project.domain.user.UserRepositoryMemory;
+import ucll.project.domain.model.user.UserRepository;
+import ucll.project.domain.model.user.UserRepositoryMemory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

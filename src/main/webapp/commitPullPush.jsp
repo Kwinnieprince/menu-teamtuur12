@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>A basic web page</title>
+    <title>Team Tuur 12</title>
 </head>
 <body>
 <header>
