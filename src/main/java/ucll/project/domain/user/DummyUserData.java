@@ -11,14 +11,14 @@ public class DummyUserData {
                 "admin" // password
         );
 
-//        userRepository.createUser(
-//                new User("bob",
-//                        "bob", "user",
-//                        "bob@example.com",
-//                        Gender.MALE, Role.SUPPORT
-//                ),
-//                "bob" // password
-//        );
+        userRepository.createUser(
+                new User("bob",
+                        "bob", "user",
+                        "bob@example.com",
+                        Gender.MALE, Role.SUPPORT
+                ),
+                "bob123" // password
+        );
 
         userRepository.createUser(
                 new User("support",
