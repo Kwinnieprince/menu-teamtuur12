@@ -4,9 +4,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ucll.project.domain.user.Gender;
-import ucll.project.domain.user.Role;
-import ucll.project.domain.user.User;
+import ucll.project.domain.model.user.Gender;
+import ucll.project.domain.model.user.Role;
+import ucll.project.domain.model.user.User;
 import ucll.project.ui.pages.HomePage;
 import ucll.project.ui.pages.LoginPage;
 import ucll.project.ui.pages.SignUpPage;
@@ -29,9 +29,9 @@ public class UserTest extends BaseUITest {
         user.setFirstName("firstName");
         user.setLastName("lastName");
         user.setGender(Gender.MALE);
-        user.setRole(Role.USER);
+        user.setRole(Role.ADMIN);
 
-        user = new User(userName, "firstName", "lastName", userName + "@email.com", Gender.MALE, Role.USER);
+        user = new User(userName, "firstName", "lastName", userName + "@email.com", Gender.MALE, Role.ADMIN);
         user.hashAndSetPassword(password);
 
         System.out.println(user.getUserName());

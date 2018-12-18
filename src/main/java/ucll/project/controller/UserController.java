@@ -1,6 +1,6 @@
 package ucll.project.controller;
 
-import ucll.project.domain.user.*;
+import ucll.project.domain.model.user.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

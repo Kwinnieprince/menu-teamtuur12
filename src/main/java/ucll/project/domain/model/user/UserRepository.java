@@ -1,5 +1,6 @@
-package ucll.project.domain.user;
+package ucll.project.domain.model.user;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserRepository {
