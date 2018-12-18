@@ -1,4 +1,4 @@
-package ucll.project.domain.user;
+package ucll.project.domain.model.user;
 
 public class DummyUserData {
     public static void addData(UserRepository userRepository) {
@@ -10,6 +10,16 @@ public class DummyUserData {
                 ),
                 "admin" // password
         );
+
+        userRepository.createUser(
+                new User("bob",
+                        "bob", "user",
+                        "bob@example.com",
+                        Gender.MALE, Role.SUPPORT
+                ),
+                "bob123" // password
+        );
+
         userRepository.createUser(
                 new User("support",
                         "support", "user",

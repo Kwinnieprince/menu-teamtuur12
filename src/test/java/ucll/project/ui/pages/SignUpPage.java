@@ -6,8 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import ucll.project.domain.user.Gender;
-import ucll.project.domain.user.Role;
+import ucll.project.domain.model.user.Gender;
+import ucll.project.domain.model.user.Role;
 
 public class SignUpPage {
 
