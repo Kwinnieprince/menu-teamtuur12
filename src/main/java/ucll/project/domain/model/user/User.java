@@ -46,7 +46,7 @@ public class User {
             throw new RuntimeException();
         }
         digest.update(password.getBytes(StandardCharsets.UTF_8));
-        String hash = DatatypeConverter.printHexBinary(digest.digest()).toUpperCase();
+        String hash = DatatypeConverter.printHexBinary(digest.digest());
         return hash;
     }
 

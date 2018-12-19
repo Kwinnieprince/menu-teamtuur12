@@ -4,14 +4,17 @@ import ucll.project.controller.DishController;
 import ucll.project.controller.UserController;
 import ucll.project.domain.model.dish.Dish;
 import ucll.project.domain.model.user.UserRepository;
+import ucll.project.domain.model.user.UserRepositoryDatabase;
 import ucll.project.domain.model.user.UserRepositoryMemory;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Properties;
 
 /**
  * This is the FrontController
@@ -22,10 +25,25 @@ import java.io.IOException;
 public class FrontController extends HttpServlet {
     private UserRepository userRepository;
 
+    public void init() throws ServletException {
+        super.init();
+
+        Properties properties = new Properties();
+        ServletContext context = getServletContext();
+        properties.setProperty("user", context.getInitParameter("user"));
+        properties.setProperty("password", context.getInitParameter("password"));
+        properties.setProperty("ssl", context.getInitParameter("ssl"));
+        properties.setProperty("sslfactory", context.getInitParameter("sslfactory"));
+        properties.setProperty("sslmode", context.getInitParameter("sslmode"));
+        properties.setProperty("url", context.getInitParameter("url"));
+
+        userRepository = new UserRepositoryDatabase(properties);
+
+    }
+
     public FrontController() {
         super();
         // You could switch here based on config
-        userRepository = new UserRepositoryMemory();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
