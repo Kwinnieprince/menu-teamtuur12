@@ -2,6 +2,7 @@ package ucll.project;
 
 import ucll.project.controller.DishController;
 import ucll.project.controller.UserController;
+import ucll.project.domain.db.DishRepositorySql;
 import ucll.project.domain.model.dish.Dish;
 import ucll.project.domain.model.user.UserRepository;
 import ucll.project.domain.model.user.UserRepositoryDatabase;
@@ -23,7 +24,14 @@ import java.util.Properties;
  */
 @WebServlet(urlPatterns = "/", loadOnStartup = 1)
 public class FrontController extends HttpServlet {
+
+    /* Repositories */
     private UserRepository userRepository;
+    private DishRepositorySql dishRepositorySql;
+
+    /* Controllers */
+    private UserController userController;
+    private DishController dishController;
 
     public void init() throws ServletException {
         super.init();
@@ -38,12 +46,14 @@ public class FrontController extends HttpServlet {
         properties.setProperty("url", context.getInitParameter("url"));
 
         userRepository = new UserRepositoryDatabase(properties);
+        dishRepositorySql = new DishRepositorySql(properties);
 
+        userController = new UserController(userRepository);
+        dishController = new DishController(userRepository, dishRepositorySql);
     }
 
     public FrontController() {
         super();
-        // You could switch here based on config
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -73,10 +83,6 @@ public class FrontController extends HttpServlet {
          *  requestResource=user
          *  requestAction=login
          */
-
-        // controllers
-        UserController userController = new UserController(userRepository);
-        DishController dishController = new DishController(userRepository);
 
         if (request.getSession().getAttribute("userid") != null) {
             int userId = (int) request.getSession().getAttribute("userid");

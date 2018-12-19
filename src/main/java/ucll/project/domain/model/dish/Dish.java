@@ -70,4 +70,6 @@ public class Dish {
     public double getExternalPrice() {
         return externalPrice;
     }
+
+    public String getCategory() { return category;}
 }
