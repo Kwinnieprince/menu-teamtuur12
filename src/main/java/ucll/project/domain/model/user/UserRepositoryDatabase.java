@@ -132,7 +132,7 @@ public class UserRepositoryDatabase implements UserRepository {
         try {
             this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");
-            
+
             ResultSet set = statement.executeQuery();
             while (set.next()) {
                 User u = makeUser(set);
