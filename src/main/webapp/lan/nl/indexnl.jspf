@@ -1,16 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Nil Marti
-  Date: 19/12/2018
-  Time: 11:52
-  To change this template use File | Settings | File Templates.
---%>
 <div class="container">
     <div class="row">
         <div class="col-md-8 well">
             <br>
             <h2 id="pageTitle">Dagmenu campus {Campus ...}</h2>
-            <a href="/index/weekMenu">Weekmenu</a>
+            <a href="weekMenu">Weekmenu</a>
             <div class="row">
                 <article class="col-sm">
                     <table class="table">
