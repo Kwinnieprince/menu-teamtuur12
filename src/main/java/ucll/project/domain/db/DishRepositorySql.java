@@ -16,6 +16,28 @@ public class DishRepositorySql {
         this.properties = properties;
     }
 
+    private Dish makeDish(ResultSet result) throws SQLException {
+        Dish dish = new Dish();
+        if (result.next()) {
+            String name = result.getString("name");
+            String description = result.getString("description");
+            double internalPrice = result.getDouble("price_internal");
+            double externalPrice = result.getDouble("price_external");
+            String category = result.getString("category");
+
+            try {
+                dish.setName(name);
+                dish.setDescription(description);
+                dish.setInternalPrice(internalPrice);
+                dish.setExternalPrice(externalPrice);
+                dish.setCategory(category);
+            } catch (DomainException e) {
+                e.printStackTrace();
+            }
+        }
+        return dish;
+    }
+
     public ArrayList<Dish> getAllDish() {
         ArrayList<Dish> dishes = new ArrayList<>();
         try {
@@ -24,22 +46,17 @@ public class DishRepositorySql {
                     ("SELECT name, description, price_internal, price_external FROM \"menu-teamtuur12\".Dish ");
 
             ResultSet resultSet = statement.executeQuery();
-
             while (resultSet.next()) {
-                String name = resultSet.getString("name");
-                String description = resultSet.getString("description");
-                double internalPrice = resultSet.getDouble("price_internal");
-                double externalPrice = resultSet.getDouble("price_external");
-                String category = resultSet.getString("category");
-
-                dishes.add(new Dish(name, description, internalPrice, externalPrice, category));
+                dishes.add(makeDish(resultSet));
             }
-        } catch (SQLException | DomainException e) {
+
+
+            } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return dishes;
     }
+
 
     public void addDish(Dish dish) {
         try {
@@ -57,5 +74,39 @@ public class DishRepositorySql {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Dish getDish(int id) {
+        Dish dish = new Dish();
+        try {
+            connection = DriverManager.getConnection(properties.getProperty("url"), properties);
+            PreparedStatement statement = connection.prepareStatement
+                    ("SELECT * from \"menu-teamtuur12\".Dish WHERE dish_id=?;");
+            statement.setInt(1, id);
+            ResultSet set = statement.executeQuery();
+
+            dish = makeDish(set);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dish;
+    }
+
+    public Dish getDish(String name) {
+        Dish dish = new Dish();
+        try {
+            connection = DriverManager.getConnection(properties.getProperty("url"), properties);
+            PreparedStatement statement = connection.prepareStatement
+                    ("SELECT * from \"menu-teamtuur12\".Dish WHERE dish_id=?;");
+            statement.setString(1, name);
+            ResultSet set = statement.executeQuery();
+
+            dish = makeDish(set);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dish;
     }
 }
