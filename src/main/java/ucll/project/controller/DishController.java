@@ -21,6 +21,7 @@ public class DishController extends BaseController {
     }
 
     public void  getAddDish(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //todo change enum to database category values
         request.setAttribute("categories", Category.values());
         request.getRequestDispatcher("/addDish.jsp").forward(request, response);
     }

@@ -1,19 +1,23 @@
 package ucll.project.controller;
 
-import ucll.project.domain.model.menu.Menu;
+import com.sun.deploy.net.HttpResponse;
+import ucll.project.domain.model.campus.Campus;
+import ucll.project.domain.model.dish.Category;
 import ucll.project.domain.model.user.UserRepository;
 
-import java.sql.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class MenuController extends BaseController {
 
-
-    public MenuController(UserRepository userRepository, Properties properties) {
+    public MenuController(UserRepository userRepository) {
         super(userRepository);
     }
 
+    public void  getMakeMenu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("campuses", Campus.values());
+        request.getRequestDispatcher("/makeMenu.jsp").forward(request, response);
+    }
 }
