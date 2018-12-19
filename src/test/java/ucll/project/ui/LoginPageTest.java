@@ -17,7 +17,7 @@ public class LoginPageTest extends BaseUITest {
         loginPage.navigateTo();
         loginPage = loginPage.loginAsExpectingError("invalid", "user");
         assertEquals("Please sign in", loginPage.getPageTitle());
-        assertEquals("Invalid username", loginPage.getErrorMessage());
+        assertEquals("Invalid password!", loginPage.getErrorMessage());
 
     }
 
