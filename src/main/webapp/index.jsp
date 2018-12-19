@@ -7,6 +7,9 @@
 
 <!-- Navigation -->
 <%@ include file="components/navigation.jspf"%>
+<%--<jsp:include page="/components/navigation.jspf">--%>
+    <%--<jsp:param name="page" value="index" />--%>
+<%--</jsp:include>--%>
 
 <!-- Page Content -->
 
