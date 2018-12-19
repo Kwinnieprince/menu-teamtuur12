@@ -1,5 +1,6 @@
 package ucll.project.controller;
 
+import ucll.project.domain.db.DishRepositorySql;
 import ucll.project.domain.model.dish.Category;
 import ucll.project.domain.model.dish.Dish;
 import ucll.project.domain.model.user.UserRepository;
@@ -11,10 +12,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DishController extends BaseController {
+    private final DishRepositorySql dishRepositorySql;
     private final String validPattern = "[a-zA-Z_0-9 ]+";
 
-    public DishController(UserRepository userRepository) {
+    public DishController(UserRepository userRepository, DishRepositorySql dishRepositorySql) {
         super(userRepository);
+        this.dishRepositorySql = dishRepositorySql;
     }
 
     public void  getAddDish(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,17 +45,10 @@ public class DishController extends BaseController {
         if (errors.size() == 0) {
             try {
                 dish = new Dish(name, description, internalPrice, externalPrice, category);
-                //service.addDish(dish);
+                dishRepositorySql.addDish(dish);
                 request.getRequestDispatcher("/addDish.jsp").forward(request, response);
             } catch (Exception e) {
                 errors.add(e.getMessage());
-                //request.setAttribute("name", request.getParameter("name"));
-                //request.setAttribute("description", request.getParameter("description"));
-                //request.setAttribute("internalPrice", request.getParameter("internalPrice"));
-                //request.setAttribute("externalPrice", request.getParameter("externalPrice"));
-                //request.setAttribute("category", request.getParameter("category"));
-                //request.setAttribute("errors", errors);
-                //request.getRequestDispatcher("/addDish.jsp").forward(request, response);
             }
         }
             request.setAttribute("name", request.getParameter("name"));
