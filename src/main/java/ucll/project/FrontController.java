@@ -135,11 +135,18 @@ public class FrontController extends HttpServlet {
             return;
         }
 
-        if(method.equals("GET") && requestResource.equals("index") && requestAction.equals("cookies")) {
+        if(requestResource.equals("index") && requestAction.equals("changeCookie")) {
             String lang = request.getParameter("language");
             String other;
             Cookie cookie = new Cookie("language", lang);
             response.addCookie(cookie);
+//            System.out.println("FULL URL=" + String.valueOf(request.getRequestURL()));
+//            String[] requestURLparts = String.valueOf(request.getRequestURL()).split("/i");
+//            String url = requestURLparts[0];
+//
+//            System.out.println("\nURL=" + url + "/" + request.getParameter("currentPage"));
+//
+//            response.sendRedirect(String.valueOf(url + "/" + request.getParameter("currentPage")));
             request.getRequestDispatcher("/index.jsp").forward(request, response);
             return;
         }

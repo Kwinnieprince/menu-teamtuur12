@@ -7,7 +7,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="container">
-        <a href="/">
+        <a href="/index">
             <span class="logo">
                 <img src="https://intranet.ucll.be/sites/all/themes/ucll_intranet/images/logo.svg" alt="logo UCLL">
             </span>
@@ -17,10 +17,10 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <c:if test="${cookie['language'].value == 'en'}">
-                        <a class="nav-link" href="/index/cookies?language=nl">NL</a>
+                        <a class="nav-link" href="/index/changeCookie?language=nl&currentPage=${page}">NL</a>
                     </c:if>
                     <c:if test="${cookie['language'].value == 'nl'}">
-                        <a class="nav-link" href="/index/cookies?language=en">EN</a>
+                        <a class="nav-link" href="/index/changeCookie?language=en&currentPage=${page}">EN</a>
                     </c:if>
                 </li>
 
