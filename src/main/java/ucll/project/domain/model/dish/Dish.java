@@ -53,7 +53,7 @@ public class Dish {
         if(externalPrice <= 0)
             throw new DomainException("External price must be positive");
 
-        if(this.internalPrice < externalPrice)
+        if(this.internalPrice > externalPrice)
             throw new DomainException("External price cannot be smaller than internal price");
 
         this.externalPrice = externalPrice;
