@@ -2,6 +2,7 @@ package ucll.project.domain.db;
 
 import org.w3c.dom.DOMException;
 import ucll.project.domain.DomainException;
+import ucll.project.domain.model.dish.Category;
 import ucll.project.domain.model.dish.Dish;
 import ucll.project.domain.model.menu.Menu;
 
@@ -20,20 +21,21 @@ public class MenuRepositorySql {
     }
 
     public Menu getMenuOfTheDay(){
-        int menu_id;
         Date date_db;
         String menu_name;
         int dish_id;
         String text;
-        double price_student;
-        double price_extern;
+        double price_internal;
+        double price_external;
         String description;
         int category_id;
-        String name;
+        String dish_name;
         String description_category;
+        String category_name;
 
 
         DateFormat dateFormat = new SimpleDateFormat("YYYY-MM-DD");
+        Menu menu = new Menu();
         Date dateDate = new Date();
         String date = dateFormat.format(dateDate);
         try (Connection connection = DriverManager.getConnection(url, properties)){
@@ -41,26 +43,30 @@ public class MenuRepositorySql {
             statement.setString(1, date);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
-                menu_id = resultSet.getInt("menu_id");
                 date_db = resultSet.getDate("date");
                 menu_name = resultSet.getString("menu_name");
-                dish_id = resultSet.getInt("dish_id");
-                description = resultSet.getString("description");
-                name = resultSet.getString("name");
-                price_extern = resultSet.getDouble("price_external");
-                price_student = resultSet.getDouble("price_student");
-                category_id = resultSet.getInt("category_id");
-                name = resultSet.getString("name");
+                description = resultSet.getString("dish_description");
+                dish_name = resultSet.getString("dish_name");
+                price_external = resultSet.getDouble("price_external");
+                price_internal = resultSet.getDouble("price_internal");
+                category_name = resultSet.getString("category_name");
                 description_category = resultSet.getString("description_category");
                 Dish dish = new Dish();
                 dish.setCategory(description_category);
                 dish.setDescription(description);
+                dish.setExternalPrice(price_external);
+                dish.setInternalPrice(price_internal);
+                dish.setName(dish_name);
+                dish.setCategoryDescription(category_name);
+                menu.addDish(dish);
+                menu.setDate(date_db);
+                menu.setMenuName(menu_name);
             }
         } catch (SQLException e){
-
+            throw new IllegalArgumentException("DBerror");
         }catch (DomainException e){
-
+            throw new IllegalArgumentException("menu error");
         }
-        return null;
+        return menu;
     }
 }

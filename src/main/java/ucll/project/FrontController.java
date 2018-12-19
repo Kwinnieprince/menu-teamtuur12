@@ -1,12 +1,11 @@
 package ucll.project;
 
 import ucll.project.controller.DishController;
+import ucll.project.controller.MenuController;
 import ucll.project.controller.UserController;
 import ucll.project.domain.db.DishRepositorySql;
-import ucll.project.domain.model.dish.Dish;
-import ucll.project.domain.model.user.UserRepository;
-import ucll.project.domain.model.user.UserRepositoryDatabase;
-import ucll.project.domain.model.user.UserRepositoryMemory;
+import ucll.project.domain.db.UserRepository;
+import ucll.project.domain.db.UserRepositoryDatabase;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -33,6 +32,7 @@ public class FrontController extends HttpServlet {
     /* Controllers */
     private UserController userController;
     private DishController dishController;
+    private MenuController menuController;
     private Properties properties;
 
     public void init() throws ServletException {
@@ -49,9 +49,10 @@ public class FrontController extends HttpServlet {
 
         userRepository = new UserRepositoryDatabase(properties);
         dishRepositorySql = new DishRepositorySql(properties);
-
         userController = new UserController(userRepository);
         dishController = new DishController(userRepository, dishRepositorySql);
+
+        menuController = new MenuController(userRepository, properties);
     }
 
     public FrontController() {
@@ -152,12 +153,21 @@ public class FrontController extends HttpServlet {
         }
 
         if(requestResource.equals("index") && requestAction.equals("weekMenu")) {
+
             request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
         }
 
         if (requestResource.equals("index")) {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
             return;
+        }
+
+        if(method.equals("GET") && requestResource.equals("weekMenu")){
+            request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
+        }
+
+        if (method.equals("GET") && requestResource.equals("menu") && requestAction.equals("make")) {
+            menuController.getMakeMenu(request, response);
         }
 
         // if no route was found, show error. Make sure to return after each forward!

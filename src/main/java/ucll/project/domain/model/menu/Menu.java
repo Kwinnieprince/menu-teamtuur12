@@ -3,16 +3,21 @@ package ucll.project.domain.model.menu;
 
 import ucll.project.domain.model.dish.Dish;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
     private Date date;
     private List<Dish>dishes = new ArrayList<>();
+    private String menuName;
 
     public Menu(Date date, Dish dish){
         setDate(date);
+    }
+
+    public Menu(){
+
     }
 
     public Date getDate() {
@@ -33,5 +38,9 @@ public class Menu {
         }else {
             dishes.add(dish);
         }
+    }
+    
+    public void setMenuName(String name){
+        this.menuName = name;
     }
 }

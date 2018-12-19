@@ -40,5 +40,3 @@
         </div>
     </c:otherwise>
 </c:choose>
-
-<%@ include file="components/footer.jspf"%>

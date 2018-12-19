@@ -3,11 +3,13 @@ package ucll.project.domain.model.dish;
 import ucll.project.domain.DomainException;
 
 public class Dish {
+    private int id;
     private String name;
     private String description;
     private double internalPrice;
     private double externalPrice;
     private String category;
+    private String category_name;
 
     public Dish(String name, String description, double internalPrice, double externalPrice, String category) throws DomainException {
             setName(name);
@@ -19,6 +21,11 @@ public class Dish {
 
     public Dish(){
 
+    }
+
+    public void setId(int id) throws DomainException{
+        if(id <= 0) throw new DomainException("Dish id cannot be smaller than or equal to zero");
+        this.id = id;
     }
 
     public void setName(String name) throws DomainException {
@@ -59,6 +66,10 @@ public class Dish {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -76,4 +87,8 @@ public class Dish {
     }
 
     public String getCategory() { return category;}
+
+    public void setCategoryDescription(String category_name) {
+        this.category_name = category_name;
+    }
 }

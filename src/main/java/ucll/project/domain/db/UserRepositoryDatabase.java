@@ -1,6 +1,10 @@
-package ucll.project.domain.model.user;
+package ucll.project.domain.db;
 
-import javax.xml.transform.Result;
+import ucll.project.domain.model.user.Gender;
+import ucll.project.domain.model.user.InvalidLogin;
+import ucll.project.domain.model.user.Role;
+import ucll.project.domain.model.user.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -164,8 +168,6 @@ public class UserRepositoryDatabase implements UserRepository {
 
             ret = makeUser(set);
 
-
-
             statement.close();
             connection.close();
 
@@ -173,10 +175,6 @@ public class UserRepositoryDatabase implements UserRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-        System.out.println(ret.getHashedPassword());
-        System.out.println(ret.getPasswordToHashedPassword(password));
-        System.out.println(ret.isValidPassword(password));
 
         if(ret == null || !ret.isValidPassword(password)) {
             throw new InvalidLogin("Invalid password!");

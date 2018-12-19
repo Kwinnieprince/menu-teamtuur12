@@ -3,7 +3,7 @@ package ucll.project.controller;
 import ucll.project.domain.db.DishRepositorySql;
 import ucll.project.domain.model.dish.Category;
 import ucll.project.domain.model.dish.Dish;
-import ucll.project.domain.model.user.UserRepository;
+import ucll.project.domain.db.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +21,7 @@ public class DishController extends BaseController {
     }
 
     public void  getAddDish(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //todo change enum to database category values
         request.setAttribute("categories", Category.values());
         request.getRequestDispatcher("/addDish.jsp").forward(request, response);
     }
