@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class DishController extends BaseController {
     private final String validPattern = "[a-zA-Z_0-9 ]+";
+
     public DishController(UserRepository userRepository) {
         super(userRepository);
     }
@@ -45,13 +46,13 @@ public class DishController extends BaseController {
                 request.getRequestDispatcher("/addDish.jsp").forward(request, response);
             } catch (Exception e) {
                 errors.add(e.getMessage());
-                request.setAttribute("name", request.getParameter("name"));
-                request.setAttribute("description", request.getParameter("description"));
-                request.setAttribute("internalPrice", request.getParameter("internalPrice"));
-                request.setAttribute("externalPrice", request.getParameter("externalPrice"));
-                request.setAttribute("category", request.getParameter("category"));
-                request.setAttribute("errors", errors);
-                request.getRequestDispatcher("/addDish.jsp").forward(request, response);
+                //request.setAttribute("name", request.getParameter("name"));
+                //request.setAttribute("description", request.getParameter("description"));
+                //request.setAttribute("internalPrice", request.getParameter("internalPrice"));
+                //request.setAttribute("externalPrice", request.getParameter("externalPrice"));
+                //request.setAttribute("category", request.getParameter("category"));
+                //request.setAttribute("errors", errors);
+                //request.getRequestDispatcher("/addDish.jsp").forward(request, response);
             }
         }
             request.setAttribute("name", request.getParameter("name"));
@@ -98,9 +99,9 @@ public class DishController extends BaseController {
     //todo check if category equals categories in database.
     private void validateCategory (String category, ArrayList <String> errors){
         if (category == null) {
-            errors.add("description is null");
+            errors.add("category is null");
         } else if (category.isEmpty()) {
-            errors.add("description is empty");
+            errors.add("category is empty");
         } else if (!category.matches(validPattern)) {
             errors.add("invalid characters");
         }
