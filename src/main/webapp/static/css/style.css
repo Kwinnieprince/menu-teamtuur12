@@ -205,3 +205,9 @@ blockquote {
 option {
     text-transform: lowercase;
 }
+
+footer {
+    background-color: #003469;
+    width: 100%;
+    color: white;
+}

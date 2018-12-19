@@ -1,3 +1,17 @@
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">
+        <a href="https://umamicatering.be/">
+            <img src="https://umamicatering.be/img/umami_logo.png" alt="umami logo">
+        </a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
 <script src="/static/vendor/jquery/jquery.min.js"></script>
 <script src="/static/vendor/jquery/jquery.timeago.js"></script>
 <script src="/static/vendor/tether/tether.min.js"></script>

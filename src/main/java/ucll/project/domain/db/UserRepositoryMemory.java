@@ -1,4 +1,8 @@
-package ucll.project.domain.model.user;
+package ucll.project.domain.db;
+
+import ucll.project.domain.model.user.DummyUserData;
+import ucll.project.domain.model.user.InvalidLogin;
+import ucll.project.domain.model.user.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;

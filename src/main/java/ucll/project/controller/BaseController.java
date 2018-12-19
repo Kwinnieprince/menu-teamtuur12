@@ -1,7 +1,7 @@
 package ucll.project.controller;
 
 import ucll.project.domain.model.user.User;
-import ucll.project.domain.model.user.UserRepository;
+import ucll.project.domain.db.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 

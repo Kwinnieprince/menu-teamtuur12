@@ -1,4 +1,7 @@
-package ucll.project.domain.model.user;
+package ucll.project.domain.db;
+
+import ucll.project.domain.model.user.InvalidLogin;
+import ucll.project.domain.model.user.User;
 
 import java.sql.SQLException;
 import java.util.List;

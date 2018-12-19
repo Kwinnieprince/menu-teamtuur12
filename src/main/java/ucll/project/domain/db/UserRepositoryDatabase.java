@@ -1,6 +1,10 @@
-package ucll.project.domain.model.user;
+package ucll.project.domain.db;
 
-import javax.xml.transform.Result;
+import ucll.project.domain.model.user.Gender;
+import ucll.project.domain.model.user.InvalidLogin;
+import ucll.project.domain.model.user.Role;
+import ucll.project.domain.model.user.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +32,7 @@ public class UserRepositoryDatabase implements UserRepository {
 
             user.hashAndSetPassword(password);
 
-            PreparedStatement statement = connection.prepareStatement("insert into \"user\" (username, firstname, lastname, email, gender, password, salt, roleid) values (?, ? , ?, ?, ? ,?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("insert into \"menu-teamtuur12\".\"user\" (username, firstname, lastname, email, gender, password, salt, roleid) values (?, ? , ?, ?, ? ,?, ?, ?)");
 
 
             statement.setString(1, user.getUserName());
@@ -53,7 +57,7 @@ public class UserRepositoryDatabase implements UserRepository {
         int roleid = 0;
         try {
             this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
-            PreparedStatement statement = connection.prepareStatement("Select roleid from role where name = ?");
+            PreparedStatement statement = connection.prepareStatement("Select roleid from \"menu-teamtuur12\".role where name = ?");
             statement.setString(1, role.getRole());
             ResultSet set  = statement.executeQuery();
 
@@ -77,7 +81,7 @@ public class UserRepositoryDatabase implements UserRepository {
 
         try {
             this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE userid = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"menu-teamtuur12\".\"user\" WHERE userid = ?");
             statement.setInt(1, userId);
 
 
@@ -99,7 +103,7 @@ public class UserRepositoryDatabase implements UserRepository {
     private User makeUser(ResultSet set) {
         User u = new User();
         try {
-            while (set.next()) {
+            if (set.next()) {
                 u.setUserId(set.getInt("userid"));
                 u.setUserName(set.getString("username"));
                 u.setFirstName(set.getString("firstname"));
@@ -131,7 +135,7 @@ public class UserRepositoryDatabase implements UserRepository {
 
         try {
             this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"menu-teamtuur12\".\"user\"");
 
             ResultSet set = statement.executeQuery();
             while (set.next()) {
@@ -157,15 +161,12 @@ public class UserRepositoryDatabase implements UserRepository {
 
         try {
             this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"menu-teamtuur12\".\"user\" WHERE username = ?");
             statement.setString(1, username);
 
+            ResultSet set = statement.executeQuery();
 
-            ret = makeUser(statement.executeQuery());
-
-            if(!ret.isValidPassword(password)) {
-                throw new InvalidLogin("Invalid password!");
-            }
+            ret = makeUser(set);
 
             statement.close();
             connection.close();
@@ -174,6 +175,11 @@ public class UserRepositoryDatabase implements UserRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        System.out.println(ret.getPasswordToHashedPassword(password));
+        if(ret == null || !ret.isValidPassword(password)) {
+            throw new InvalidLogin("Invalid password!");
+        }
+
         return ret;
     }
 
@@ -181,7 +187,7 @@ public class UserRepositoryDatabase implements UserRepository {
     public void update(User user) {
         try {
             this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
-            PreparedStatement statement = connection.prepareStatement("UPDATE user set userid=? username=? firstname=? lastname=? email=? gender=? password=? roleid=? ");
+            PreparedStatement statement = connection.prepareStatement("UPDATE \"menu-teamtuur12\".\"user\" set userid=? username=? firstname=? lastname=? email=? gender=? password=? roleid=? ");
             statement.setInt(1, user.getUserId());
             statement.setString(2, user.getUserName());
             statement.setString(3, user.getFirstName());
@@ -205,7 +211,7 @@ public class UserRepositoryDatabase implements UserRepository {
     public void delete(User user) {
         try {
             this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
-            PreparedStatement statement = connection.prepareStatement("DELETE * FROM users WHERE userid = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE * FROM \"menu-teamtuur12\".\"user\" WHERE userid = ?");
             statement.setInt(1, user.getUserId());
             statement.execute();
 
