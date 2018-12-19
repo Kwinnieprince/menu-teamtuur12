@@ -6,6 +6,8 @@
 <%@ include file="components/header.jspf"%>
 
 <!-- Navigation -->
+<c:set var="page" value="index"/>
+
 <%@ include file="components/navigation.jspf"%>
 <%--<jsp:include page="/components/navigation.jspf">--%>
     <%--<jsp:param name="page" value="index" />--%>
@@ -27,7 +29,7 @@
             <div class="row">
                 <div class="col-md-8 well">
                     <h2 id="pageTitle"><br>Dagmenu campus {Campus ...}</h2>
-                    <form method="POST" action="/index/cookies">
+                    <form method="POST" action="/index/setCookie">
                         <p>
                             <label for="nl"><input type="radio" name="language" value="nl" id="nl">Nederlands</label>
                             <label for="en"><input type="radio" name="language" value="en" id="en">English</label>

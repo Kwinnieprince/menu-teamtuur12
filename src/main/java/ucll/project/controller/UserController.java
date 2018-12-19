@@ -32,7 +32,7 @@ public class UserController extends BaseController {
                 User user = getUserRepository().loginUser(username, password);
                 request.getSession().setAttribute("userid", user.getUserId());
                 request.setAttribute("user", user);
-                response.sendRedirect("/");
+                response.sendRedirect("/index");
             } catch (InvalidLogin error) {
                 request.setAttribute("username", username);
                 request.setAttribute("error", error.getMessage());
@@ -49,7 +49,7 @@ public class UserController extends BaseController {
     public void handleLogout(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().removeAttribute("userid");
         try {
-            response.sendRedirect("/");
+            response.sendRedirect("/index");
         } catch (IOException e) {
             e.printStackTrace();
         }
