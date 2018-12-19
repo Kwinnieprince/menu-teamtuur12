@@ -91,34 +91,42 @@ public class User {
     }
 
     public void setUserId(int userId) {
+        if(userId <= 0) throw new IllegalArgumentException("userid cannot be smaller than zero");
         this.userId = userId;
     }
 
     public void setUserName(String userName) {
+        if(userName == null || userName.trim().isEmpty()) throw new IllegalArgumentException("Username cannot be empty");
         this.userName = userName;
     }
 
     public void setFirstName(String firstName) {
+        if(firstName == null || firstName.trim().isEmpty()) throw new IllegalArgumentException("Firstname cannot be empty");
         this.firstName = firstName;
     }
 
     public void setLastName(String lastName) {
+        if(lastName == null || lastName.trim().isEmpty()) throw new IllegalArgumentException("Lastname cannot be empty");
         this.lastName = lastName;
     }
 
     public void setEmail(String email) {
+        if(email == null || email.trim().isEmpty()) throw new IllegalArgumentException("Email cannot be empty");
         this.email = email;
     }
 
     public void setGender(Gender gender) {
+        if(gender == null) throw new IllegalArgumentException("Gender cannot be empty");
         this.gender = gender;
     }
 
     public void setRole(Role role) {
+        if(role == null) throw new IllegalArgumentException("Role cannot be empty");
         this.role = role;
     }
 
     public void setHashedPassword(String hashedPassword) {
+        if(hashedPassword == null || hashedPassword.trim().isEmpty()) throw new IllegalArgumentException("Hashed password cannot be empty");
         this.hashedPassword = hashedPassword;
     }
 
