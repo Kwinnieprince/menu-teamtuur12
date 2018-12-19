@@ -8,6 +8,7 @@ public class Dish {
     private double internalPrice;
     private double externalPrice;
     private String category;
+    private String category_name;
 
     public Dish(String name, String description, double internalPrice, double externalPrice, String category) throws DomainException {
             setName(name);
@@ -76,4 +77,8 @@ public class Dish {
     }
 
     public String getCategory() { return category;}
+
+    public void setCategoryDescription(String category_name) {
+        this.category_name = category_name;
+    }
 }

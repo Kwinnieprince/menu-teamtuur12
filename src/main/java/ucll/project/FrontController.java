@@ -1,6 +1,7 @@
 package ucll.project;
 
 import ucll.project.controller.DishController;
+import ucll.project.controller.MenuController;
 import ucll.project.controller.UserController;
 import ucll.project.domain.db.DishRepositorySql;
 import ucll.project.domain.db.UserRepository;
@@ -32,6 +33,7 @@ public class FrontController extends HttpServlet {
     private UserController userController;
     private DishController dishController;
     private Properties properties;
+    private MenuController menuController;
 
     public void init() throws ServletException {
         super.init();
@@ -50,6 +52,8 @@ public class FrontController extends HttpServlet {
 
         userController = new UserController(userRepository);
         dishController = new DishController(userRepository, dishRepositorySql);
+
+        menuController = new MenuController(userRepository, properties);
     }
 
     public FrontController() {
@@ -143,6 +147,7 @@ public class FrontController extends HttpServlet {
         }
 
         if(requestResource.equals("index") && requestAction.equals("weekMenu")) {
+
             request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
         }
 
