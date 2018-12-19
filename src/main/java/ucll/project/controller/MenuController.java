@@ -1,8 +1,6 @@
 package ucll.project.controller;
 
-import com.sun.deploy.net.HttpResponse;
 import ucll.project.domain.model.campus.Campus;
-import ucll.project.domain.model.dish.Category;
 import ucll.project.domain.model.user.UserRepository;
 
 import javax.servlet.ServletException;
