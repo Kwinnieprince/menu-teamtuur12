@@ -59,6 +59,7 @@ public class FrontController extends HttpServlet {
         // controllers
         UserController userController = new UserController(userRepository);
         DishController dishController = new DishController(userRepository);
+        MenuController menuController = new MenuController(userRepository);
 
         if (request.getSession().getAttribute("userid") != null) {
             int userId = (int) request.getSession().getAttribute("userid");
