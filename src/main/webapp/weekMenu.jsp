@@ -27,16 +27,20 @@
     </c:when>
 
     <c:otherwise>
-        <h2 id="pageTitle">Weekmenu campus {Campus ...}</h2>
-        <div class="col-lg-1">
-            <form method="POST" action="/index/cookies">
-                <p>
-                    <label for="nl"><input type="radio" name="language" value="nl" id="nl">Nederlands</label>
-                    <label for="en"><input type="radio" name="language" value="en" id="en">English</label>
-                    <br>
-                    <input type="submit" id="language" value="Send">
-                </p>
-            </form>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 well">
+                    <h2 id="pageTitle"><br>Weekmenu campus {Campus ...}</h2>
+                    <form method="POST" action="/index/cookies">
+                        <p>
+                            <label for="nl"><input type="radio" name="language" value="nl" id="nl">Nederlands</label>
+                            <label for="en"><input type="radio" name="language" value="en" id="en">English</label>
+                            <br>
+                            <input type="submit" id="language" value="Send">
+                        </p>
+                    </form>
+                </div>
+            </div>
         </div>
     </c:otherwise>
 </c:choose>
