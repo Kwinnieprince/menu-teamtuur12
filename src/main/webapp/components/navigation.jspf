@@ -13,15 +13,17 @@
             </span>
         </a>
 
-        <c:if test="${cookie['language'].value == 'en'}">
-            <a href="/index/cookies?language=nl">NL</a>
-        </c:if>
-        <c:if test="${cookie['language'].value == 'nl'}">
-            <a href="/index/cookies?language=en">EN</a>
-        </c:if>
-
         <div class="collapse navbar-collapse" id="navbarExample">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <c:if test="${cookie['language'].value == 'en'}">
+                        <a class="nav-link" href="/index/cookies?language=nl">NL</a>
+                    </c:if>
+                    <c:if test="${cookie['language'].value == 'nl'}">
+                        <a class="nav-link" href="/index/cookies?language=en">EN</a>
+                    </c:if>
+                </li>
+
                 <c:if test="${not empty user}">
                     <li class="nav-item"><a class="nav-link" href="dish/add">Add Item</a></li>
                 </c:if>

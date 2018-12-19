@@ -17,80 +17,28 @@
 
 <!-- Page Content -->
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 well">
-            <br>
-            <h2 id="pageTitle">Weekmenu campus {Campus ...}</h2> <!-- TODO get campus from enum -->
+<c:choose>
+    <c:when test="${cookie['language'].value == 'en'}">
+        <%@ include file="lan/en/weekMenuEn.jspf"%>
+    </c:when>
+
+    <c:when test="${cookie['language'].value == 'nl'}">
+        <%@ include file="lan/nl/weekMenuNl.jspf"%>
+    </c:when>
+
+    <c:otherwise>
+        <h2 id="pageTitle">Weekmenu campus {Campus ...}</h2>
+        <div class="col-lg-1">
+            <form method="POST" action="/index/cookies">
+                <p>
+                    <label for="nl"><input type="radio" name="language" value="nl" id="nl">Nederlands</label>
+                    <label for="en"><input type="radio" name="language" value="en" id="en">English</label>
+                    <br>
+                    <input type="submit" id="language" value="Send">
+                </p>
+            </form>
         </div>
-    </div>
-    <div class="row">
-        <article class="col-sm">
-            <table class="table">
-                <thead>
-            <tr>
-                <th scope="col">Dag van de week</th>
-                <th scope="col">Maandag</th>
-                <th scope="col">Dinsdag</th>
-                <th scope="col">Woensdag</th>
-                <th scope="col">Donderdag</th>
-                <th scope="col">Vrijdag</th>
-            </tr>
-            </thead>
-                <thead>
-                <tr>
-                    <th scope="col">Dag</th>
-                    <th scope="col">17/12</th>
-                    <th scope="col">18/12</th>
-                    <th scope="col">19/12</th>
-                    <th scope="col">20/12</th>
-                    <th scope="col">21/12</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th scope="row">Soep</th>
-                    <td colspan="5" style="text-align: center">Tomatensoep</td>
-                </tr>
-                <tr>
-                    <th scope="row">Soep</th>
-                    <td>wortel-gembersoep</td>
-                    <td>Champignonsoep</td>
-                    <td>witloofsoep</td>
-                    <td>preisoep</td>
-                    <td>Minestrone</td>
-                </tr>
-                <tr>
-                    <th scope="row">Pasta</th>
-                    <td colspan="5" style="text-align: center">Pasta bolognaise</td>
-                </tr>
-                <tr>
-                    <th scope="row">Dagschotel</th>
-                    <td>Nasi goreng</td>
-                    <td>Cordon bleu</td>
-                    <td>Vegetarische lasagne</td>
-                    <td>Verse gyros</td>
-                    <td>tortelini</td>
-                </tr>
-                <tr>
-                    <th scope="row">Vis van de dag</th>
-                    <td>Pladijs</td>
-                    <td>Visspies</td>
-                    <td>Zalmfilet</td>
-                    <td>Koolvis</td>
-                    <td>Papilotte</td>
-                </tr>
-                <tr>
-                    <th scope="row">Snacks</th>
-                    <td colspan="5" style="text-align: center">koninginnenhapje - Rundstoofvlees - balletjes in tomatensaus</td>
-                </tr>
-                </tbody>
-            </table>
-        </article>
-        <aside class="col-sm">
-            <p>This is aside</p>
-        </aside>
-    </div>
-</div>
+    </c:otherwise>
+</c:choose>
 
 <%@ include file="components/footer.jspf"%>

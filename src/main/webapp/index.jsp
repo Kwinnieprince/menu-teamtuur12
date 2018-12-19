@@ -12,11 +12,11 @@
 
 <c:choose>
     <c:when test="${cookie['language'].value == 'en'}">
-        <%@ include file="indexen.jspf"%>
+        <%@ include file="lan/en/indexen.jspf"%>
     </c:when>
 
     <c:when test="${cookie['language'].value == 'nl'}">
-        <%@ include file="indexnl.jspf"%>
+        <%@ include file="lan/nl/indexnl.jspf"%>
     </c:when>
 
     <c:otherwise>

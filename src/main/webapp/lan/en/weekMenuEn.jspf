@@ -1,0 +1,80 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Nil Marti
+  Date: 19/12/2018
+  Time: 14:22
+  To change this template use File | Settings | File Templates.
+--%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 well">
+            <br>
+            <h2 id="pageTitle">Week menu campus {Campus ...}</h2> <!-- TODO get campus from enum -->
+        </div>
+    </div>
+    <a href="/index">Dagmenu</a>
+    <div class="row">
+        <article class="col-sm">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Day of the week</th>
+                    <th scope="col">Monday</th>
+                    <th scope="col">Tuesday</th>
+                    <th scope="col">Wednesday</th>
+                    <th scope="col">Thursday</th>
+                    <th scope="col">Friday</th>
+                </tr>
+                </thead>
+                <thead>
+                <tr>
+                    <th scope="col">Day</th>
+                    <th scope="col">17/12</th>
+                    <th scope="col">18/12</th>
+                    <th scope="col">19/12</th>
+                    <th scope="col">20/12</th>
+                    <th scope="col">21/12</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Soup</th>
+                    <td colspan="5" style="text-align: center">Tomato soup</td>
+                </tr>
+                <tr>
+                    <th scope="row">Soup</th>
+                    <td>Carrot-ginger soup</td>
+                    <td>Mushroom soup</td>
+                    <td>Chicory soup</td>
+                    <td>Leeks soup</td>
+                    <td>Minestrone</td>
+                </tr>
+                <tr>
+                    <th scope="row">Pasta</th>
+                    <td colspan="5" style="text-align: center">Pasta bolognaise</td>
+                </tr>
+                <tr>
+                    <th scope="row">Day dish</th>
+                    <td>Nasi goreng</td>
+                    <td>Cordon bleu</td>
+                    <td>Veggie lasagna</td>
+                    <td>Fresh gyros</td>
+                    <td>Tortelini</td>
+                </tr>
+                <tr>
+                    <th scope="row">Fish of the day</th>
+                    <td>Plaice</td>
+                    <td>Fish skewer</td>
+                    <td>Salmon filet</td>
+                    <td>Saithe</td>
+                    <td>Papilotte</td>
+                </tr>
+                <tr>
+                    <th scope="row">Snacks</th>
+                    <td colspan="5" style="text-align: center">Koninginnenhapje - Stewmeat - Meatballs in tomato sauce</td>
+                </tr>
+                </tbody>
+            </table>
+        </article>
+    </div>
+</div>
