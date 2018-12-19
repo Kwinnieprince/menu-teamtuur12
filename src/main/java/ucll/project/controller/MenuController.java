@@ -1,8 +1,8 @@
 package ucll.project.controller;
 
 import ucll.project.domain.db.MenuRepositorySql;
+import ucll.project.domain.db.UserRepository;
 import ucll.project.domain.model.menu.Menu;
-import ucll.project.domain.model.user.UserRepository;
 
 import java.util.Properties;
 
