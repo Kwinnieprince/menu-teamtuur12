@@ -34,7 +34,6 @@ public class FrontController extends HttpServlet {
     private DishController dishController;
     private MenuController menuController;
     private Properties properties;
-    private MenuController menuController;
 
     public void init() throws ServletException {
         super.init();
@@ -50,7 +49,6 @@ public class FrontController extends HttpServlet {
 
         userRepository = new UserRepositoryDatabase(properties);
         dishRepositorySql = new DishRepositorySql(properties);
-        menuController = new MenuController(userRepository);
         userController = new UserController(userRepository);
         dishController = new DishController(userRepository, dishRepositorySql);
 
