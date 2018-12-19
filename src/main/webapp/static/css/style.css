@@ -211,3 +211,13 @@ footer {
     width: 100%;
     color: white;
 }
+
+.custom-fixed-bottom {
+    background-color: #003469;
+    position: relative;
+}
+
+.campus-select {
+    margin-top: 1em;
+    marigin-bottom: 1.5em;
+}

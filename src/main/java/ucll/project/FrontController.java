@@ -32,8 +32,8 @@ public class FrontController extends HttpServlet {
     /* Controllers */
     private UserController userController;
     private DishController dishController;
-    private Properties properties;
     private MenuController menuController;
+    private Properties properties;
 
     public void init() throws ServletException {
         super.init();
@@ -49,7 +49,6 @@ public class FrontController extends HttpServlet {
 
         userRepository = new UserRepositoryDatabase(properties);
         dishRepositorySql = new DishRepositorySql(properties);
-
         userController = new UserController(userRepository);
         dishController = new DishController(userRepository, dishRepositorySql);
 
@@ -154,6 +153,14 @@ public class FrontController extends HttpServlet {
         if (requestResource.equals("index")) {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
             return;
+        }
+
+        if(method.equals("GET") && requestResource.equals("weekMenu")){
+            request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
+        }
+
+        if (method.equals("GET") && requestResource.equals("menu") && requestAction.equals("make")) {
+            menuController.getMakeMenu(request, response);
         }
 
         // if no route was found, show error. Make sure to return after each forward!

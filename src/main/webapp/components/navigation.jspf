@@ -25,7 +25,8 @@
                 </li>
 
                 <c:if test="${not empty user}">
-                    <li class="nav-item"><a class="nav-link" href="dish/add">Add Item</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dish/add">Add Item</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/menu/make">Make Menu</a></li>
                 </c:if>
                 <c:if test="${empty user}">
                     <%-- The c:out will return active when the requested url matches /user/login --%>

@@ -21,7 +21,14 @@
     <div class="row">
         <div class="col-md-8 well">
             <br>
-            <h2 id="pageTitle">Weekmenu campus {Campus ...}</h2> <!-- TODO get campus from enum -->
+            <div>
+                <h2 id="pageTitle">Weekmenu campus </h2>
+                <select id="campus" class="form-control campus-select" name="campus" value="${campus}" required>
+                    <c:forEach var="camp" items="${campuses}">
+                        <option value="${camp}">${camp}</option>
+                    </c:forEach>
+                </select>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -87,9 +94,6 @@
                 </tbody>
             </table>
         </article>
-        <aside class="col-sm">
-            <p>This is aside</p>
-        </aside>
     </div>
 </div>
 
