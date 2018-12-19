@@ -66,7 +66,7 @@ public class UserTest extends BaseUITest {
         assertEquals("Logout, " + user.getUserName(), homePage.getLogoutLinkText());
 
         homePage = homePage.clickLogoutLink();
-        assertEquals("Hello world!", homePage.getPageTitle());
+        assertEquals("Dagmenu campus {Campus ...}", homePage.getPageTitle());
     }
 
 

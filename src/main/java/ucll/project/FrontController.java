@@ -1,6 +1,8 @@
 package ucll.project;
 
+import ucll.project.controller.DishController;
 import ucll.project.controller.UserController;
+import ucll.project.domain.model.dish.Dish;
 import ucll.project.domain.model.user.UserRepository;
 import ucll.project.domain.model.user.UserRepositoryMemory;
 
@@ -56,6 +58,7 @@ public class FrontController extends HttpServlet {
 
         // controllers
         UserController userController = new UserController(userRepository);
+        DishController dishController = new DishController(userRepository);
 
         if (request.getSession().getAttribute("userid") != null) {
             int userId = (int) request.getSession().getAttribute("userid");
@@ -86,6 +89,15 @@ public class FrontController extends HttpServlet {
         if (/* any method */         requestResource.equals("user") && requestAction.equals("logout")) {
             userController.handleLogout(request, response);
             return;
+        }
+
+        if (method.equals("GET") && requestResource.equals("dish") && requestAction.equals("add")) {
+            dishController.getAddDish(request, response);
+            return;
+        }
+
+        if (method.equals("POST") && requestResource.equals("dish") && requestAction.equals("add")) {
+            dishController.postAddDish(request, response);
         }
 
 

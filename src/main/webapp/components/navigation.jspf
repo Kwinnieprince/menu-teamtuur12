@@ -7,15 +7,16 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="container">
-        <a class="navbar-brand" href="/">Application</a>
+        <a href="/">
+            <span class="logo">
+                <img src="https://intranet.ucll.be/sites/all/themes/ucll_intranet/images/logo.svg" alt="logo UCLL">
+            </span>
+        </a>
         <div class="collapse navbar-collapse" id="navbarExample">
             <ul class="navbar-nav ml-auto">
                 <c:if test="${not empty user}">
-                    <c:if test="${user.role == Role.ADMIN}">
-                        <li class="nav-item"><a href="edit/dish">Add Item</a></li>
-                    </c:if>
+                    <li class="nav-item"><a class="nav-link" href="dish/add">Add Item</a></li>
                 </c:if>
-
                 <c:if test="${empty user}">
                     <%-- The c:out will return active when the requested url matches /user/login --%>
                     <li class="nav-item <c:out value = "${requestScope['javax.servlet.forward.request_uri'] == '/user/login' ? 'active' : ''}"/>">
@@ -29,7 +30,7 @@
 
                 <c:if test="${not empty user}">
                     <li class="nav-item">
-                        <a id="logoutLink" class="nav-link" href="user/logout">Logout, ${user.userName}</a>
+                        <a id="logoutLink" class="nav-link" href="/user/logout">Logout, ${user.userName}</a>
                     </li>
                 </c:if>
 

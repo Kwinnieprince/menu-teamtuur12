@@ -2,6 +2,7 @@ package ucll.project.domain.model.user;
 
 import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -46,11 +47,6 @@ public class UserRepositoryDatabase implements UserRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
-
-
-
-
     }
 
     private int getRoleId(Role role) {
@@ -77,13 +73,51 @@ public class UserRepositoryDatabase implements UserRepository {
 
     @Override
     public User get(int userId) {
-        return null;
+        User u = new User();
+
+        try {
+            this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE userid = ?");
+            statement.setInt(1, userId);
+
+
+            ResultSet set = statement.executeQuery();
+            while (set.next()) {
+                u = makeUser(set);
+            }
+
+            statement.close();
+            connection.close();
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return u;
     }
 
     private User makeUser(ResultSet set) {
         User u = new User();
         try {
             while (set.next()) {
+                u.setUserId(set.getInt("userid"));
+                u.setUserName(set.getString("username"));
+                u.setFirstName(set.getString("firstname"));
+                u.setLastName(set.getString("lastname"));
+                u.setEmail(set.getString("email"));
+
+                if(set.getString("gender").equals("FEMALE")) {
+                    u.setGender(Gender.FEMALE);
+                } else {
+                    u.setGender(Gender.MALE);
+                }
+                u.setHashedPassword(set.getString("password"));
+
+                if(set.getInt("roleid") == 1) {
+                    u.setRole(Role.ADMIN);
+                } else {
+                    u.setRole(Role.CAMPUSADMIN);
+                }
             }
         } catch (SQLException e) {
             e.getErrorCode();
@@ -93,21 +127,92 @@ public class UserRepositoryDatabase implements UserRepository {
 
     @Override
     public List<User> getAll() {
-        return null;
+        List<User> users = new ArrayList<>();
+
+        try {
+            this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users");
+            
+            ResultSet set = statement.executeQuery();
+            while (set.next()) {
+                User u = makeUser(set);
+                users.add(u);
+            }
+
+            statement.close();
+            connection.close();
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return users;
     }
+
+
 
     @Override
     public User loginUser(String username, String password) throws InvalidLogin {
-        return null;
+        User ret = new User();
+
+        try {
+            this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ?");
+            statement.setString(1, username);
+
+
+            ret = makeUser(statement.executeQuery());
+
+            if(!ret.isValidPassword(password)) {
+                throw new InvalidLogin("Invalid password!");
+            }
+
+            statement.close();
+            connection.close();
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return ret;
     }
 
     @Override
     public void update(User user) {
+        try {
+            this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
+            PreparedStatement statement = connection.prepareStatement("UPDATE user set userid=? username=? firstname=? lastname=? email=? gender=? password=? roleid=? ");
+            statement.setInt(1, user.getUserId());
+            statement.setString(2, user.getUserName());
+            statement.setString(3, user.getFirstName());
+            statement.setString(4, user.getLastName());
+            statement.setString(5, user.getEmail());
+            statement.setString(6, String.valueOf(user.getGender()));
+            statement.setString(7, user.getHashedPassword());
+            statement.setInt(8, getRoleId(user.getRole()));
+            statement.executeUpdate();
 
+            statement.close();
+            connection.close();
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
     public void delete(User user) {
+        try {
+            this.connection = DriverManager.getConnection(properties.getProperty("url"),this.properties);
+            PreparedStatement statement = connection.prepareStatement("DELETE * FROM users WHERE userid = ?");
+            statement.setInt(1, user.getUserId());
+            statement.execute();
 
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

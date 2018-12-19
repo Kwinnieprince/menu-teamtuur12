@@ -14,7 +14,7 @@ public class HomePageTest extends BaseUITest {
 
         HomePage homePage = new HomePage(driver);
         homePage.navigateTo();
-        assertEquals("Hello world!", homePage.getPageTitle());
+        assertEquals("Dagmenu campus {Campus ...}", homePage.getPageTitle());
 
     }
 
