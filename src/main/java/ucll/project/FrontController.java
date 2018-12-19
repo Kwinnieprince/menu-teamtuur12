@@ -153,7 +153,7 @@ public class FrontController extends HttpServlet {
         }
 
         if(requestResource.equals("index") && requestAction.equals("weekMenu")) {
-
+            request.setAttribute("weekmenu", menuController.getMenuOfTheDay());
             request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
         }
 
