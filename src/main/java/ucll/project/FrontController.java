@@ -147,10 +147,6 @@ public class FrontController extends HttpServlet {
             return;
         }
 
-        if(method.equals("GET") && requestResource.equals("test") && requestAction.equals("test")){
-            System.out.println("Working");
-        }
-
         // if no route was found, show error. Make sure to return after each forward!
         request.getRequestDispatcher("/error.jsp").forward(request, response);
 
