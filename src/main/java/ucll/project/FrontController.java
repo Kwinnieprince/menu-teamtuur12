@@ -10,6 +10,7 @@ import ucll.project.domain.model.user.UserRepositoryMemory;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -89,6 +90,7 @@ public class FrontController extends HttpServlet {
                 request.getMethod(), requestURI,
                 requestResource, requestAction
         ));
+        System.out.println(requestResource);
 
 
         if (method.equals("GET") && requestResource.equals("user") && requestAction.equals("login")) {
@@ -118,9 +120,23 @@ public class FrontController extends HttpServlet {
             dishController.postAddDish(request, response);
         }
 
+        if (method.equals("POST") && requestResource.equals("index") && requestAction.equals("cookies")) {
+            String lan = request.getParameter("language");
+            Cookie cookie = new Cookie("language", lan);
+            response.addCookie(cookie);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            return;
+        }
+
+        if(requestResource.equals("index") && requestAction.equals("cookies")) {
+            String lang = request.getParameter("language");
+            Cookie cookie = new Cookie("language", lang);
+            response.addCookie(cookie);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            return;
+        }
 
         if (requestResource.equals("index")) {
-
             request.getRequestDispatcher("/index.jsp").forward(request, response);
             return;
         }
