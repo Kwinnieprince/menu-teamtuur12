@@ -14,7 +14,7 @@
     </div>
     <div class="row">
         <article class="col-sm">
-            <a href="/">Dagmenu</a>
+            <a href="/index">Dagmenu</a>
             <table class="table">
                 <thead>
                 <tr>
