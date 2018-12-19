@@ -3,7 +3,7 @@
         <div class="col-md-8 well">
             <br>
             <h2 id="pageTitle">Dagmenu campus {Campus ...}</h2>
-            <a href="weekMenu">Weekmenu</a>
+            <a href="/index/weekMenu">Weekmenu</a>
             <div class="row">
                 <article class="col-sm">
                     <table class="table">
