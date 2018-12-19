@@ -3,7 +3,7 @@ package ucll.project.controller;
 import ucll.project.domain.db.DishRepositorySql;
 import ucll.project.domain.model.dish.Category;
 import ucll.project.domain.model.dish.Dish;
-import ucll.project.domain.model.user.UserRepository;
+import ucll.project.domain.db.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

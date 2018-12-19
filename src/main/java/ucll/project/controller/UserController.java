@@ -1,5 +1,6 @@
 package ucll.project.controller;
 
+import ucll.project.domain.db.UserRepository;
 import ucll.project.domain.model.user.*;
 
 import javax.servlet.ServletException;
