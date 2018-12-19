@@ -25,11 +25,12 @@ import java.util.Properties;
 @WebServlet(urlPatterns = "/", loadOnStartup = 1)
 public class FrontController extends HttpServlet {
     private UserRepository userRepository;
+    Properties properties;
 
     public void init() throws ServletException {
         super.init();
 
-        Properties properties = new Properties();
+        properties = new Properties();
         ServletContext context = getServletContext();
         properties.setProperty("user", context.getInitParameter("user"));
         properties.setProperty("password", context.getInitParameter("password"));
