@@ -175,7 +175,7 @@ public class UserRepositoryDatabase implements UserRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(ret.getPasswordToHashedPassword(password));
+
         if(ret == null || !ret.isValidPassword(password)) {
             throw new InvalidLogin("Invalid password!");
         }
