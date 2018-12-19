@@ -1,0 +1,58 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Nil Marti
+  Date: 19/12/2018
+  Time: 11:52
+  To change this template use File | Settings | File Templates.
+--%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 well">
+            <br>
+            <h2 id="pageTitle">Day Menu campus {Campus ...}</h2>
+            <a href="/index/weekMenu">Weekmenu</a>
+            <div class="row">
+                <article class="col-sm">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col" colspan="5" style="text-align: center">Tuesday</th>
+                        </tr>
+                        </thead>
+                        <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col" colspan="5" style="text-align: center">18/12</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">Soup</th>
+                            <td colspan="5" style="text-align: center">Tomato soup</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Soup</th>
+                            <td colspan="5" style="text-align: center">Mushroom soup</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Pasta</th>
+                            <td colspan="5" style="text-align: center">Pasta bolognaise</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Day dish</th>
+                            <td colspan="5" style="text-align: center">Cordon bleu</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Fish from the day</th>
+                            <td colspan="5" style="text-align: center">Visspies</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Snacks</th>
+                            <td colspan="5" style="text-align: center">Koninginnenhapje - Stewmeat - Meatballs in tomato sauce</td>
+                        </tr>
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
