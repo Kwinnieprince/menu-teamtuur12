@@ -58,6 +58,8 @@
                         </tr>
                         </tbody>
                     </table>
+                </article>
+            </div>
         </div>
     </div>
 </div>
