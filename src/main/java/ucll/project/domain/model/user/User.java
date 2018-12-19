@@ -38,7 +38,7 @@ public class User {
     }
 
     // This function will hash the password
-    protected String getPasswordToHashedPassword(String password) {
+    public String getPasswordToHashedPassword(String password) {
         MessageDigest digest = null;
         try {
             digest = MessageDigest.getInstance("SHA-256");

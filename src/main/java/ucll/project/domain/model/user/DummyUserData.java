@@ -1,5 +1,7 @@
 package ucll.project.domain.model.user;
 
+import ucll.project.domain.db.UserRepository;
+
 public class DummyUserData {
     public static void addData(UserRepository userRepository) {
         userRepository.createUser(

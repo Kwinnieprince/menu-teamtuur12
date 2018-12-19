@@ -4,10 +4,8 @@ import ucll.project.controller.DishController;
 import ucll.project.controller.MenuController;
 import ucll.project.controller.UserController;
 import ucll.project.domain.db.DishRepositorySql;
-import ucll.project.domain.model.dish.Dish;
-import ucll.project.domain.model.user.UserRepository;
-import ucll.project.domain.model.user.UserRepositoryDatabase;
-import ucll.project.domain.model.user.UserRepositoryMemory;
+import ucll.project.domain.db.UserRepository;
+import ucll.project.domain.db.UserRepositoryDatabase;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
