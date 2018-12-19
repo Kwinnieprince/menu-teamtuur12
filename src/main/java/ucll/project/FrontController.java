@@ -147,10 +147,6 @@ public class FrontController extends HttpServlet {
             return;
         }
 
-        if(method.equals("GET") && requestResource.equals("weekMenu")){
-            request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
-        }
-
         // if no route was found, show error. Make sure to return after each forward!
         request.getRequestDispatcher("/error.jsp").forward(request, response);
 
