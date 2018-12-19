@@ -21,7 +21,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col" colspan="5" style="text-align: center"></th>
+                            <th scope="col"></th>
                             <th scope="col" colspan="5" style="text-align: center">Dinsdag</th>
                         </tr>
                         </thead>
