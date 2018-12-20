@@ -23,7 +23,7 @@
                             <tbody>
                             <tr>
                                 <th scope="row"><c:out value="${dish.category}"/></th>
-                                <td colspan="5" style="text-align: center"><b><c:out value="${dish.name}"/> </b> <br> <i>prijs student: <c:out value="${dish.internalPrice}"/> &euro; </i> <br> <i>prijs externe: <c:out value="${dish.externalPrice}"/> &euro; </i></td>
+                                <td colspan="5" style="text-align: center"><b><c:out value="${dish.name}"/> </b> <br> <i>prijs student: <c:out value="${dish.internalPrice}"/> &euro; </i>  <b>/</b>  <i>prijs externe: <c:out value="${dish.externalPrice}"/> &euro; </i></td>
                             </tr>
                         </c:forEach>
                         </tbody>

@@ -60,6 +60,26 @@ public class DishRepositorySql {
         return dishes;
     }
 
+
+    public void addDish(Dish dish) {
+        try {
+            connection = DriverManager.getConnection(properties.getProperty("url"), properties);
+            PreparedStatement statement = connection.prepareStatement
+                    ("INSERT INTO \"menu-teamtuur12\".dish (dish_name, dish_description, price_internal, price_external, category_id) VALUES (?, ? ,? ,?, ?);");
+            statement.setString(1, dish.getName());
+            statement.setString(2, dish.getDescription());
+            statement.setDouble(3, dish.getInternalPrice());
+            statement.setDouble(4, dish.getExternalPrice());
+            statement.setInt(5, getCategoryId(dish.getCategory()));
+
+            statement.execute();
+            connection.close();
+            System.out.println("success");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public int getCategoryId(String category) {
         int id = 0;
         try {
@@ -113,23 +133,6 @@ public class DishRepositorySql {
         return dish;
     }
 
-    public void addDish(Dish dish) {
-        try {
-            connection = DriverManager.getConnection(properties.getProperty("url"), properties);
-            PreparedStatement statement = connection.prepareStatement
-                    ("INSERT INTO \"menu-teamtuur12\".Dish (name, description, price_internal, price_external, category) VALUES (?, ? ,? ,?, ?);");
-            statement.setString(1, dish.getName());
-            statement.setString(2, dish.getDescription());
-            statement.setDouble(3, dish.getInternalPrice());
-            statement.setDouble(4, dish.getExternalPrice());
-            statement.setString(5, dish.getCategory());
-
-            statement.execute();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void removeDishes(int[] ids) {
 	try {
