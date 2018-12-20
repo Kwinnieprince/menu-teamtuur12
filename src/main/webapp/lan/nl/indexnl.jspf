@@ -22,29 +22,9 @@
                         <c:forEach var="dish" items="${dagmenu.dishes}">
                             <tbody>
                             <tr>
-                                <th scope="row"><c:out value="${dish.description}"/></th>
-                                <td colspan="5" style="text-align: center"><b><c:out value="${dish.name}"/> </b> <br> <i>prijs student: <c:out value="${dish.internalPrice}"/> &euro; </i></td>
+                                <th scope="row"><c:out value="${dish.category}"/></th>
+                                <td colspan="5" style="text-align: center"><b><c:out value="${dish.name}"/> </b> <br> <i>prijs student: <c:out value="${dish.internalPrice}"/> &euro; </i> <br> <i>prijs externe: <c:out value="${dish.externalPrice}"/> &euro; </i></td>
                             </tr>
-                            <%--<tr>--%>
-                                <%--<th scope="row">Soep</th>--%>
-                                <%--<td colspan="5" style="text-align: center">Champignonsoep</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<th scope="row">Pasta</th>--%>
-                                <%--<td colspan="5" style="text-align: center">Pasta bolognaise</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<th scope="row">Dagschotel</th>--%>
-                                <%--<td colspan="5" style="text-align: center">Cordon bleu</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<th scope="row">Vis van de dag</th>--%>
-                                <%--<td colspan="5" style="text-align: center">Visspies</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<th scope="row">Snacks</th>--%>
-                                <%--<td colspan="5" style="text-align: center">koninginnenhapje - Rundstoofvlees - balletjes in tomatensaus</td>--%>
-                            <%--</tr>--%>
                         </c:forEach>
                         </tbody>
                     </table>

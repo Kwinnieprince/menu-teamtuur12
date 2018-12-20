@@ -20,15 +20,24 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 well">
-            <br>
             <div>
-                <h2 id="pageTitle">Weekmenu campus </h2>
-                <select id="campus" class="form-control campus-select" name="campus" value="${campus}" required>
-                    <c:forEach var="camp" items="${campuses}">
-                        <option value="${camp}">${camp}</option>
-                    </c:forEach>
-                </select>
-            </div>
+            </br>
+                <h2 id="pageTitle">Weekmenu</h2>
+                <form method="post" action="/menu/updateCampus">
+                    <div class="row">
+                        <div class="col-md-8 well">
+                            <select id="campus" class="form-control campus-select" name="campus" onchange='if(campus.value != "${campuses[0]}") {campus.form.submit();}' value="${campus}" required>
+                                <option value="${prevCampus}">${prevCampus}</option>
+                                <c:forEach var="camp" items="${campuses}">
+                                    <option value="${camp}">${camp}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-md-4 well campus-select">
+                            <input type=date class="form-control" step=7 min=2014-09-08>
+                        </div>
+                    </div>
+                </form>
         </div>
     </div>
     <div class="row">

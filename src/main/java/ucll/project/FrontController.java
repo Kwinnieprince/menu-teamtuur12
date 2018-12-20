@@ -81,7 +81,6 @@ public class FrontController extends HttpServlet {
         String requestResource;
         String requestAction = "";
         request.setAttribute("dagmenu", menuController.getMenuOfTheDay());
-        System.out.println(menuController.getMenuOfTheDay().getDishes().toString());
         if (requestURI.equals("/"))
             requestResource = "index";
         else {
@@ -134,6 +133,17 @@ public class FrontController extends HttpServlet {
 
         if (method.equals("POST") && requestResource.equals("dish") && requestAction.equals("add")) {
             dishController.postAddDish(request, response);
+            return;
+        }
+
+        if (method.equals("GET") && requestResource.equals("dish") && requestAction.equals("remove")) {
+            dishController.getRemoveDishes(request, response);
+            return;
+        }
+
+        if (method.equals("POST") && requestResource.equals("dish") && requestAction.equals("remove")) {
+            dishController.postRemoveDishes(request, response);
+            return;
         }
 
         if (method.equals("POST") && requestAction.equals("setCookie")) {
@@ -173,6 +183,10 @@ public class FrontController extends HttpServlet {
         }
 
         if (method.equals("GET") && requestResource.equals("menu") && requestAction.equals("make")) {
+            menuController.getMakeMenu(request, response);
+        }
+
+        if (method.equals("POST") && requestResource.equals("menu") && requestAction.equals("updateCampus")) {
             menuController.getMakeMenu(request, response);
         }
 

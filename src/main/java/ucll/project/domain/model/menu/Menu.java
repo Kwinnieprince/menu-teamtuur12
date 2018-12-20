@@ -1,9 +1,12 @@
 package ucll.project.domain.model.menu;
 
 
+import jdk.nashorn.internal.runtime.linker.LinkerCallSite;
 import ucll.project.domain.model.dish.Dish;
 
 import java.text.DateFormatSymbols;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
@@ -29,16 +32,12 @@ public class Menu {
 
     public void setDate(Date date) {
         this.date = date;
-        setWeekday(date);
+        setWeekday();
     }
 
-    public void setWeekday(Date date){
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, date.getYear());
-        calendar.set(Calendar.DAY_OF_YEAR, date.getDay());
-        int weekday = calendar.get(Calendar.DAY_OF_WEEK);
-        DateFormatSymbols dfs = new DateFormatSymbols();
-        dateString = dfs.getWeekdays()[weekday];
+    public void setWeekday(){
+        dateString = LocalDate.now().getDayOfWeek().toString();
+        dateString = dateString.substring(0,1)+dateString.substring(1).toLowerCase();
     }
 
     public String getWeekday(){
