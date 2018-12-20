@@ -27,7 +27,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 well">
-                    <h2 id="pageTitle"><br>Dagmenu campus {Campus ...}</h2>
+                    <h2 id="pageTitle"><br>Dagmenu campus Proximus</h2>
                     <form method="POST" action="/index/setCookie">
                         <p>
                             <label for="nl"><input type="radio" name="language" value="nl" id="nl">Nederlands</label>
