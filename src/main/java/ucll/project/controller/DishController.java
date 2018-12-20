@@ -64,6 +64,24 @@ public class DishController extends BaseController {
             request.getRequestDispatcher("/addDish.jsp").forward(request, response);
     }
 
+    public void getRemoveDishes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	request.setAttribute("dishes", dishRepositorySql.getAllDishes());
+        request.getRequestDispatcher("/removeDishes.jsp").forward(request, response);
+    }
+
+    public void postRemoveDishes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	String[] stringParams = request.getParameterValues("id[]");
+	int[] intParams = new int[stringParams.length];
+
+	for (int i = 0; i < stringParams.length; i++) {
+	    intParams[i] = Integer.parseInt(stringParams[i]);
+	}
+
+        dishRepositorySql.removeDishes(intParams);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
+
     private void validateName(String name, ArrayList<String> errors){
         if (name == null) {
             errors.add("name is null");

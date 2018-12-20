@@ -133,6 +133,17 @@ public class FrontController extends HttpServlet {
 
         if (method.equals("POST") && requestResource.equals("dish") && requestAction.equals("add")) {
             dishController.postAddDish(request, response);
+            return;
+        }
+
+        if (method.equals("GET") && requestResource.equals("dish") && requestAction.equals("remove")) {
+            dishController.getRemoveDishes(request, response);
+            return;
+        }
+
+        if (method.equals("POST") && requestResource.equals("dish") && requestAction.equals("remove")) {
+            dishController.postRemoveDishes(request, response);
+            return;
         }
 
         if (method.equals("POST") && requestAction.equals("setCookie")) {
