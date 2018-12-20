@@ -41,7 +41,7 @@
 
                 <c:if test="${not empty user}">
                     <li class="nav-item">
-                        <a id="logoutLink" class="nav-link" href="/user/logout">Logout, ${user.userName}</a>
+                        <a id="logoutLink" class="nav-link" href="/user/logout">Logout ${user.userName}</a>
                     </li>
                 </c:if>
             </ul>
