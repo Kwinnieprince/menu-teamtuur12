@@ -2,9 +2,8 @@
     <div class="row">
         <div class="col-md-8 well">
             <br>
-            <div>
-                <h2 id="pageTitle">Dagmenu campus {Campus ...}</h2>
-                <a href="/weekMenu">Weekmenu</a>
+            <h2 id="pageTitle">Dagmenu campus Proximus</h2>
+            <a href="/weekMenu">Weekmenu</a>
             <div class="row">
                 <article class="col-sm">
                     <table class="table">
@@ -23,8 +22,8 @@
                         <c:forEach var="dish" items="${dagmenu.dishes}">
                         <tbody>
                         <tr>
-                            <th scope="row"><c:out value="${dish.description}"/></th>
-                            <td colspan="5" style="text-align: center"><b><c:out value="${dish.name}"/> </b> <br> <i>prijs student: <c:out value="${dish.internalPrice}"/> &euro; </i></td>
+                            <th scope="row"><c:out value="${dish.category}"/></th>
+                            <td colspan="5" style="text-align: center"><b><c:out value="${dish.name}"/> </b> <br> <i>prijs student: <c:out value="${dish.internalPrice}"/> &euro; </i>  <b>/</b>  <i>prijs externe: <c:out value="${dish.externalPrice}"/> &euro; </i></td>
                         </tr>
                         </c:forEach>
                         </tbody>

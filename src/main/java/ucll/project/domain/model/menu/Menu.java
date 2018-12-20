@@ -1,7 +1,6 @@
 package ucll.project.domain.model.menu;
 
 
-import jdk.nashorn.internal.runtime.linker.LinkerCallSite;
 import ucll.project.domain.model.dish.Dish;
 
 import java.text.DateFormatSymbols;
@@ -42,6 +41,18 @@ public class Menu {
 
     public String getWeekday(){
         return dateString;
+    }
+
+    public String getWeekdag(){
+        String dagNederlands = "";
+
+        if (dateString.equals("Thursday")){
+            dagNederlands = "Donderdag";
+        }
+        if (dateString.equals("Friday")){
+            dagNederlands = "Vrijdag";
+        }
+        return dagNederlands;
     }
 
     public void setDishes(List<Dish> dishes) {
