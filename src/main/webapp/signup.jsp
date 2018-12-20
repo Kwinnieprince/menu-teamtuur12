@@ -46,13 +46,6 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-addon">Date of birth</span>
-                            <input id="dateOfBirthInput" type="date" class="form-control" name="dateofbirth" value="${dateofbirth}" required style="flex-direction: row;" required>
-                            <!-- Fix for bug in bootstrap 4: https://github.com/twbs/bootstrap/issues/21651#issuecomment-272802603 -->
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <input id="passwordInput" type="password" class="form-control" name="password" value="${password}" placeholder="Password" required>
                     </div>
                     <div class="form-group">
