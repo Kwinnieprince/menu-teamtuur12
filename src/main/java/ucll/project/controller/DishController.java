@@ -108,8 +108,8 @@ public class DishController extends BaseController {
             errors.add("Category is empty");
         } else if (!category.matches(validPattern)) {
             errors.add("Invalid characters");
-        } else if (nameList.contains(category)) {
-            errors.add("Category already exists");
+        } else if (!nameList.contains(category)) {
+            errors.add("No such category already exists");
         }
     }
 }

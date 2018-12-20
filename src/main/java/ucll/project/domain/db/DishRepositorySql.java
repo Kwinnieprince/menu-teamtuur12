@@ -72,6 +72,7 @@ public class DishRepositorySql {
 
             statement.execute();
             connection.close();
+            System.out.println("success");
         } catch (SQLException e) {
             e.printStackTrace();
         }
