@@ -3,6 +3,7 @@ package ucll.project;
 import ucll.project.controller.DishController;
 import ucll.project.controller.MenuController;
 import ucll.project.controller.UserController;
+import ucll.project.domain.db.CategoryRepositorySql;
 import ucll.project.domain.db.DishRepositorySql;
 import ucll.project.domain.db.UserRepository;
 import ucll.project.domain.db.UserRepositoryDatabase;
@@ -28,6 +29,7 @@ public class FrontController extends HttpServlet {
     /* Repositories */
     private UserRepository userRepository;
     private DishRepositorySql dishRepositorySql;
+    private CategoryRepositorySql categoryRepositorySql;
 
     /* Controllers */
     private UserController userController;
@@ -47,11 +49,15 @@ public class FrontController extends HttpServlet {
         properties.setProperty("sslmode", context.getInitParameter("sslmode"));
         properties.setProperty("url", context.getInitParameter("url"));
 
+
+        //DATABASES
         userRepository = new UserRepositoryDatabase(properties);
         dishRepositorySql = new DishRepositorySql(properties);
-        userController = new UserController(userRepository);
-        dishController = new DishController(userRepository, dishRepositorySql);
+        categoryRepositorySql = new CategoryRepositorySql(properties);
 
+        //Controllers
+        userController = new UserController(userRepository);
+        dishController = new DishController(userRepository, dishRepositorySql, categoryRepositorySql);
         menuController = new MenuController(userRepository, properties);
     }
 
@@ -74,6 +80,8 @@ public class FrontController extends HttpServlet {
         String method = request.getMethod();
         String requestResource;
         String requestAction = "";
+        request.setAttribute("dagmenu", menuController.getMenuOfTheDay());
+        System.out.println(menuController.getMenuOfTheDay().getDishes().toString());
         if (requestURI.equals("/"))
             requestResource = "index";
         else {
@@ -94,11 +102,11 @@ public class FrontController extends HttpServlet {
 
 
         // logic to handle what controller
-        System.out.println(String.format("%s %s\nResource = %s, Action = %s",
-                request.getMethod(), requestURI,
-                requestResource, requestAction
-        ));
-        System.out.println(requestResource);
+//        System.out.println(String.format("%s %s\nResource = %s, Action = %s",
+//                request.getMethod(), requestURI,
+//                requestResource, requestAction
+//        ));
+//        System.out.println(requestResource);
 
 
         if (method.equals("GET") && requestResource.equals("user") && requestAction.equals("login")) {

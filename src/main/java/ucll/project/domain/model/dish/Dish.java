@@ -45,8 +45,17 @@ public class Dish {
     public void setInternalPrice(double internalPrice) throws DomainException {
         if(internalPrice <= 0)
             throw new DomainException("Internal price must be positive");
-
+        internalPrice = round(internalPrice, 2);
         this.internalPrice = internalPrice;
+    }
+
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
     }
 
     public void setExternalPrice(double externalPrice) throws DomainException {

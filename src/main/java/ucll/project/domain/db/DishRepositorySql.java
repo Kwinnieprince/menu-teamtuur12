@@ -1,6 +1,7 @@
 package ucll.project.domain.db;
 
 import ucll.project.domain.DomainException;
+import ucll.project.domain.model.dish.Category;
 import ucll.project.domain.model.dish.Dish;
 
 import java.sql.*;
@@ -43,7 +44,7 @@ public class DishRepositorySql {
         try {
             connection = DriverManager.getConnection(properties.getProperty("url"), properties);
             PreparedStatement statement = connection.prepareStatement
-                    ("SELECT name, description, price_internal, price_external FROM \"menu-teamtuur12\".Dish ");
+                    ("SELECT name, description, price_internal, price_external FROM \"menu-teamtuur12\".dish ");
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -62,12 +63,12 @@ public class DishRepositorySql {
         try {
             connection = DriverManager.getConnection(properties.getProperty("url"), properties);
             PreparedStatement statement = connection.prepareStatement
-                    ("INSERT INTO \"menu-teamtuur12\".Dish (name, description, price_internal, price_external, category) VALUES (?, ? ,? ,?, ?);");
+                    ("INSERT INTO \"menu-teamtuur12\".dish (dish_name, dish_description, price_internal, price_external, category_id) VALUES (?, ? ,? ,?, ?);");
             statement.setString(1, dish.getName());
             statement.setString(2, dish.getDescription());
             statement.setDouble(3, dish.getInternalPrice());
             statement.setDouble(4, dish.getExternalPrice());
-            statement.setString(5, dish.getCategory());
+            statement.setInt(5, getCategoryId(dish.getCategory()));
 
             statement.execute();
             connection.close();
@@ -76,12 +77,31 @@ public class DishRepositorySql {
         }
     }
 
+    public int getCategoryId(String category) {
+        int id = 0;
+        try {
+            connection = DriverManager.getConnection(properties.getProperty("url"), properties);
+            PreparedStatement statement = connection.prepareStatement("SELECT category_id FROM \"menu-teamtuur12\".category WHERE category_name = ?");
+            statement.setString(1, category);
+
+            ResultSet set = statement.executeQuery();
+
+            if(set.next()) {
+                id = set.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
+
     public Dish getDish(int id) {
         Dish dish = new Dish();
         try {
             connection = DriverManager.getConnection(properties.getProperty("url"), properties);
             PreparedStatement statement = connection.prepareStatement
-                    ("SELECT * from \"menu-teamtuur12\".Dish WHERE dish_id=?;");
+                    ("SELECT * from \"menu-teamtuur12\".dish WHERE dish_id=?;");
             statement.setInt(1, id);
             ResultSet set = statement.executeQuery();
 
@@ -98,7 +118,7 @@ public class DishRepositorySql {
         try {
             connection = DriverManager.getConnection(properties.getProperty("url"), properties);
             PreparedStatement statement = connection.prepareStatement
-                    ("SELECT * from \"menu-teamtuur12\".Dish WHERE dish_id=?;");
+                    ("SELECT * from \"menu-teamtuur12\".dish WHERE dish_id=?;");
             statement.setString(1, name);
             ResultSet set = statement.executeQuery();
 
