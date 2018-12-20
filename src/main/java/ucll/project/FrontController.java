@@ -163,12 +163,27 @@ public class FrontController extends HttpServlet {
         }
 
         if (method.equals("GET") && requestResource.equals("index")) {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            if(request.getParameter("language") == null || request.getParameter("language").trim().isEmpty())
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+            else {
+                setCookie(response, "language", request.getParameter("language")); //Sets cookie
+
+                String[] requestURL = String.valueOf(request.getRequestURL()).split("/i");
+                response.sendRedirect(requestURL[0] + "/" + requestResource);
+            }
             return;
         }
 
         if(method.equals("GET") && requestResource.equals("weekMenu")){
-            request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
+            if(request.getParameter("language") == null || request.getParameter("language").trim().isEmpty())
+                  request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
+            else {
+                setCookie(response, "language", request.getParameter("language")); //Sets cookie
+
+                String[] requestURL = String.valueOf(request.getRequestURL()).split("/w");
+                response.sendRedirect(requestURL[0] + "/" + requestResource);
+            }
+            return;
         }
 
         if (method.equals("GET") && requestResource.equals("menu") && requestAction.equals("make")) {
