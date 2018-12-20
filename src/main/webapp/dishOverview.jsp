@@ -23,19 +23,28 @@
     <table>
         <tr>
             <th>Name</th>
+            <th></th>
             <th>Description</th>
+            <th></th>
             <th>Student price</th>
+            <th></th>
             <th>External price</th>
+            <th></th>
             <th>Category</th>
+            <th></th>
         </tr>
         <c:forEach items="${dishes}" var="dish">
         <tr>
                 <td>${dish.name}</td>
+                <th></th>
                 <td>${dish.description}</td>
+                <th></th>
                 <td>${dish.internalPrice}</td>
+                <th></th>
                 <td>${dish.externalPrice}</td>
+                <th></th>
                 <td>${dish.category}</td>
-
+                <th></th>
         </tr>
         </c:forEach>
     </table>

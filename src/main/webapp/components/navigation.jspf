@@ -31,6 +31,7 @@
                     <li class="nav-item <c:out value = "${requestScope['javax.servlet.forward.request_uri'] == '/user/signup' ? 'active' : ''}"/>">
                         <a id="signUpLink" class="nav-link" href="/user/signup">Sign-up</a>
                     </li>
+                    <li class="nav-item"><a class="nav-link" href="/dish/overview">Gerechten overzicht</a> </li>
                 </c:if>
                 <c:if test="${empty user}">
                     <%-- The c:out will return active when the requested url matches /user/login --%>
