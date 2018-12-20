@@ -57,6 +57,7 @@ public class DishController extends BaseController {
             request.setAttribute("internalPrice", request.getParameter("internalPrice"));
             request.setAttribute("externalPrice", request.getParameter("externalPrice"));
             request.setAttribute("category", request.getParameter("category"));
+            request.setAttribute("categories", Category.values());
             request.setAttribute("errors", errors);
             request.getRequestDispatcher("/addDish.jsp").forward(request, response);
     }
