@@ -23,8 +23,6 @@
                     <p id="errorMessage" class="error">${error}</p>
                 </form>
             </div>
-            <a href="./signup" class="text-center new-account">Create an account</a><br><br>
-            <blockquote class="blockquote">demo accounts: <br>user/user<br>support/support<br>admin/admin</blockquote>
         </div>
     </div>
 </div>

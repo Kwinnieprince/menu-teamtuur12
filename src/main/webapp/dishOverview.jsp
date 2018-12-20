@@ -30,8 +30,6 @@
             <th></th>
             <th>External price</th>
             <th></th>
-            <th>Category</th>
-            <th></th>
         </tr>
         <c:forEach items="${dishes}" var="dish">
         <tr>
@@ -42,8 +40,6 @@
                 <td>${dish.internalPrice}</td>
                 <th></th>
                 <td>${dish.externalPrice}</td>
-                <th></th>
-                <td>${dish.category}</td>
                 <th></th>
         </tr>
         </c:forEach>
