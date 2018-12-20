@@ -95,7 +95,7 @@ public class Dish {
         return externalPrice;
     }
 
-    public String getCategory() { return category;}
+    public String getCategory() { return category_name;}
 
     public void setCategoryDescription(String category_name) {
         this.category_name = category_name;

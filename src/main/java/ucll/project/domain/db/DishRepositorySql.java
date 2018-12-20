@@ -19,14 +19,16 @@ public class DishRepositorySql {
 
     private Dish makeDish(ResultSet result) throws SQLException {
         Dish dish = new Dish();
-        if (result.next()) {
-            String name = result.getString("name");
-            String description = result.getString("description");
+        //if (result.next()) {
+	int id = result.getInt("dish_id");
+            String name = result.getString("dish_name");
             double internalPrice = result.getDouble("price_internal");
             double externalPrice = result.getDouble("price_external");
-            String category = result.getString("category");
+            String description = result.getString("dish_description");
+            String category = result.getString("category_name");
 
             try {
+		dish.setId(id);
                 dish.setName(name);
                 dish.setDescription(description);
                 dish.setInternalPrice(internalPrice);
@@ -35,16 +37,16 @@ public class DishRepositorySql {
             } catch (DomainException e) {
                 e.printStackTrace();
             }
-        }
+	    //}
         return dish;
     }
 
-    public ArrayList<Dish> getAllDish() {
+    public ArrayList<Dish> getAllDishes() {
         ArrayList<Dish> dishes = new ArrayList<>();
         try {
             connection = DriverManager.getConnection(properties.getProperty("url"), properties);
             PreparedStatement statement = connection.prepareStatement
-                    ("SELECT name, description, price_internal, price_external FROM \"menu-teamtuur12\".dish ");
+                    ("SELECT dish_id, dish_name, price_internal, price_external, dish_description, category_name FROM \"menu-teamtuur12\".Dish INNER JOIN \"menu-teamtuur12\".Category USING(category_id)");
 
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -129,5 +131,47 @@ public class DishRepositorySql {
             e.printStackTrace();
         }
         return dish;
+    }
+
+
+    public void removeDishes(int[] ids) {
+	try {
+	    connection = DriverManager.getConnection
+		(properties.getProperty("url"), properties);
+
+	    StringBuilder query = new StringBuilder
+		("DELETE FROM \"menu-teamtuur12\".Dish WHERE dish_id IN (");
+	    for (int i = 0; i < ids.length -1; i++) {
+		query.append("?, ");
+	    }
+	    query.append("?);");
+
+	    PreparedStatement statement =
+		connection.prepareStatement(query.toString());
+
+	    for (int i = 0; i < ids.length; i++) {
+		statement.setInt(i+1, ids[i]);
+	    }
+
+	    statement.execute();
+	    connection.close();
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+    }
+
+    public void removeDish(int id) {
+        try {
+            connection = DriverManager.getConnection(properties.getProperty("url"), properties);
+            PreparedStatement statement = connection.prepareStatement
+                    ("DELETE FROM \"menu-teamtuur12\".Dish WHERE id = ?");
+
+            statement.setInt(1, id);
+
+            statement.execute();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
