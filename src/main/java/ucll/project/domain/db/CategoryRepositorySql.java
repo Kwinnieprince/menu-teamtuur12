@@ -71,7 +71,9 @@ public class CategoryRepositorySql implements CategoryRepository {
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM \"menu-teamtuur12\".category")){
 
             ResultSet set = statement.executeQuery();
+
             while (set.next()) {
+                System.out.println(set);
                 Category c = makeCategory(set);
                 categories.add(c);
             }
@@ -80,6 +82,7 @@ public class CategoryRepositorySql implements CategoryRepository {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        System.out.println(categories);
         return categories;
     }
 
@@ -112,10 +115,8 @@ public class CategoryRepositorySql implements CategoryRepository {
         Category c = new Category();
 
         try {
-            if (set.next()) {
-                c.setName(set.getString("category_name"));
-                c.setDescription(set.getString("category_description"));
-            }
+            c.setName(set.getString("category_name"));
+            c.setDescription(set.getString("category_description"));
         } catch (SQLException e) {
             e.getErrorCode();
         } catch (DomainException e) {
