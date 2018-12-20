@@ -40,6 +40,6 @@ public class UserTest extends BaseUITest {
 
     @After
     public void deleteUser() {
-       
+
     }
 }
