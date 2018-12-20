@@ -96,7 +96,7 @@ public class DishController extends BaseController {
     //todo check if category equals categories in database.
     private void validateCategory (String category, ArrayList <String> errors){
         if (category == null) {
-            errors.add("category is null");
+            errors.add("category is empty");
         } else if (category.isEmpty()) {
             errors.add("category is empty");
         } else if (!category.matches(validPattern)) {
