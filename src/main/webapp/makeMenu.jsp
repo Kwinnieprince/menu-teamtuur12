@@ -22,7 +22,7 @@
         <div class="col-md-8 well">
             <div>
             </br>
-                <h2 id="pageTitle">Weekmenu</h2>
+                <h2 id="pageTitle"></h2>
                 <form method="post" action="/menu/updateCampus">
                     <div class="row">
                         <div class="col-md-8 well">
@@ -34,7 +34,7 @@
                             </select>
                         </div>
                         <div class="col-md-4 well campus-select">
-                            <input type=date class="form-control" step=7 min=2014-09-08>
+                            <input type=date class="form-control" id="date" name="date" step=7 min=2018-06-18 placeholder="${prevDate}" value="${prevDate}" required pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])/(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])/(?:30))|(?:(?:0[13578]|1[02])-31))">
                         </div>
                     </div>
                 </form>
