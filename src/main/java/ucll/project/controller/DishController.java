@@ -1,5 +1,6 @@
 package ucll.project.controller;
 
+import ucll.project.domain.db.CategoryRepositorySql;
 import ucll.project.domain.db.DishRepositorySql;
 import ucll.project.domain.model.dish.Category;
 import ucll.project.domain.model.dish.Dish;
@@ -12,17 +13,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DishController extends BaseController {
+    private final CategoryRepositorySql categoryRepositorySql;
     private final DishRepositorySql dishRepositorySql;
     private final String validPattern = "[a-zA-Z_0-9 ]+";
 
-    public DishController(UserRepository userRepository, DishRepositorySql dishRepositorySql) {
+    public DishController(UserRepository userRepository, DishRepositorySql dishRepositorySql, CategoryRepositorySql categoryRepositorySql) {
         super(userRepository);
         this.dishRepositorySql = dishRepositorySql;
+        this.categoryRepositorySql = categoryRepositorySql;
     }
 
     public void  getAddDish(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //todo change enum to database category values
-        request.setAttribute("categories", Category.values());
+        request.setAttribute("categories", categoryRepositorySql.getAll());
         request.getRequestDispatcher("/addDish.jsp").forward(request, response);
     }
 
@@ -57,7 +59,6 @@ public class DishController extends BaseController {
             request.setAttribute("internalPrice", request.getParameter("internalPrice"));
             request.setAttribute("externalPrice", request.getParameter("externalPrice"));
             request.setAttribute("category", request.getParameter("category"));
-            request.setAttribute("categories", Category.values());
             request.setAttribute("errors", errors);
             request.getRequestDispatcher("/addDish.jsp").forward(request, response);
     }
@@ -97,11 +98,13 @@ public class DishController extends BaseController {
     //todo check if category equals categories in database.
     private void validateCategory (String category, ArrayList <String> errors){
         if (category == null) {
-            errors.add("category is empty");
+            errors.add("Category is null");
         } else if (category.isEmpty()) {
-            errors.add("category is empty");
+            errors.add("Category is empty");
         } else if (!category.matches(validPattern)) {
-            errors.add("invalid characters");
+            errors.add("Invalid characters");
+        } else if (categoryRepositorySql.getAll().contains(category)) {
+            errors.add("Category already exists");
         }
     }
 }

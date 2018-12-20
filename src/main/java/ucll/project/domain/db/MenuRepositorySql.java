@@ -1,8 +1,6 @@
 package ucll.project.domain.db;
 
-import org.w3c.dom.DOMException;
 import ucll.project.domain.DomainException;
-import ucll.project.domain.model.dish.Category;
 import ucll.project.domain.model.dish.Dish;
 import ucll.project.domain.model.menu.Menu;
 

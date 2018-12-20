@@ -3,6 +3,7 @@ package ucll.project;
 import ucll.project.controller.DishController;
 import ucll.project.controller.MenuController;
 import ucll.project.controller.UserController;
+import ucll.project.domain.db.CategoryRepositorySql;
 import ucll.project.domain.db.DishRepositorySql;
 import ucll.project.domain.db.UserRepository;
 import ucll.project.domain.db.UserRepositoryDatabase;
@@ -28,6 +29,7 @@ public class FrontController extends HttpServlet {
     /* Repositories */
     private UserRepository userRepository;
     private DishRepositorySql dishRepositorySql;
+    private CategoryRepositorySql categoryRepositorySql;
 
     /* Controllers */
     private UserController userController;
@@ -49,8 +51,10 @@ public class FrontController extends HttpServlet {
 
         userRepository = new UserRepositoryDatabase(properties);
         dishRepositorySql = new DishRepositorySql(properties);
+        categoryRepositorySql = new CategoryRepositorySql(properties);
         userController = new UserController(userRepository);
-        dishController = new DishController(userRepository, dishRepositorySql);
+
+        dishController = new DishController(userRepository, dishRepositorySql, categoryRepositorySql);
 
         menuController = new MenuController(userRepository, properties);
     }
