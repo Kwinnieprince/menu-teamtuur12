@@ -11,7 +11,8 @@ public class Dish {
     private String category;
     private String category_name;
 
-    public Dish(String name, String description, double internalPrice, double externalPrice, String category) throws DomainException {
+    public Dish(int id, String name, String description, double internalPrice, double externalPrice, String category) throws DomainException {
+	    setId(id);
             setName(name);
             setDescription(description);
             setInternalPrice(internalPrice);
