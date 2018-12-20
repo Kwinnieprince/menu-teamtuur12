@@ -41,7 +41,6 @@ public class MenuRepositorySql {
             PreparedStatement statement = connection.prepareStatement("select * from \"menu-teamtuur12\".menu inner join \"menu-teamtuur12\".dish_has_menu using (menu_id) inner join \"menu-teamtuur12\".dish using(dish_id)  inner join \"menu-teamtuur12\".category using(category_id) where date = ?::date");
             statement.setString(1, date);
             ResultSet resultSet = statement.executeQuery();
-            System.out.println(resultSet.toString());
             while (resultSet.next()){
                 date_db = resultSet.getDate("date");
                 menu_name = resultSet.getString("menu_name");
@@ -58,11 +57,9 @@ public class MenuRepositorySql {
                 dish.setInternalPrice(price_internal);
                 dish.setName(dish_name);
                 dish.setCategoryDescription(category_name);
-                System.out.println(dish.getCategory() + "HALP");
                 menu.addDish(dish);
                 menu.setDate(date_db);
                 menu.setMenuName(menu_name);
-                System.out.println(menu.getDate().toString() + "HILP");
             }
         } catch (SQLException e){
             throw new IllegalArgumentException(e.getMessage());

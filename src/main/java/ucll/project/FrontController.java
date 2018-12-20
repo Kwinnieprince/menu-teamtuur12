@@ -81,7 +81,6 @@ public class FrontController extends HttpServlet {
         String requestResource;
         String requestAction = "";
         request.setAttribute("dagmenu", menuController.getMenuOfTheDay());
-        System.out.println(menuController.getMenuOfTheDay().getDishes().toString());
         if (requestURI.equals("/"))
             requestResource = "index";
         else {
