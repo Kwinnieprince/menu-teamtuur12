@@ -80,6 +80,8 @@ public class FrontController extends HttpServlet {
         String method = request.getMethod();
         String requestResource;
         String requestAction = "";
+        request.setAttribute("dagmenu", menuController.getMenuOfTheDay());
+        System.out.println(menuController.getMenuOfTheDay().getDishes().toString());
         if (requestURI.equals("/"))
             requestResource = "index";
         else {
@@ -100,11 +102,11 @@ public class FrontController extends HttpServlet {
 
 
         // logic to handle what controller
-        System.out.println(String.format("%s %s\nResource = %s, Action = %s",
-                request.getMethod(), requestURI,
-                requestResource, requestAction
-        ));
-        System.out.println(requestResource);
+//        System.out.println(String.format("%s %s\nResource = %s, Action = %s",
+//                request.getMethod(), requestURI,
+//                requestResource, requestAction
+//        ));
+//        System.out.println(requestResource);
 
 
         if (method.equals("GET") && requestResource.equals("user") && requestAction.equals("login")) {
