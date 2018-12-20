@@ -64,7 +64,7 @@ public class Dish {
 
         if(this.internalPrice > externalPrice)
             throw new DomainException("External price cannot be smaller than internal price");
-
+        externalPrice = round(externalPrice, 2);
         this.externalPrice = externalPrice;
     }
     public void setCategory(String category) throws DomainException{
@@ -95,7 +95,7 @@ public class Dish {
         return externalPrice;
     }
 
-    public String getCategory() { return category;}
+    public String getCategory() { return category_name;}
 
     public void setCategoryDescription(String category_name) {
         this.category_name = category_name;
