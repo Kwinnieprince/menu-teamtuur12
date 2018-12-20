@@ -25,9 +25,9 @@
                 </li>
 
                 <c:if test="${not empty user}">
-                    <li class="nav-item"><a class="nav-link" href="/dish/add">Add Dish</a></li>
-		    <li class="nav-item"><a class="nav-link" href="/dish/remove">Remove Dish</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/menu/make">Make Menu</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/dish/add">Voeg gerecht toe</a></li>
+		    <li class="nav-item"><a class="nav-link" href="/dish/remove">Verwijder gerecht</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/menu/make">Maak menu</a></li>
                     <li class="nav-item <c:out value = "${requestScope['javax.servlet.forward.request_uri'] == '/user/signup' ? 'active' : ''}"/>">
                         <a id="signUpLink" class="nav-link" href="/user/signup">Sign-up</a>
                     </li>

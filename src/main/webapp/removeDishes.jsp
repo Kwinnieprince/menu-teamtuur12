@@ -9,18 +9,30 @@
 
 
 <!-- Page Content -->
-<form method="post">
-  <ul>
-    <c:forEach items="${dishes}" var="dish" >
-      <div>
-        <li>
-          <input type="checkbox" id="dish-${dish.id}" name="id[]" value="${dish.id}" />
-          <label for="dish-${dish.id}" ><c:out value="${dish.name}"/> </label>
-        </li>
+<div class="container">
+  <div class="col-md-8 well">
+    <br>
+    <h2>Verwijder een gerecht</h2>
+    <div class="row">
+      <div class="col-sm">
+        <form method="post">
+          <ul style="list-style: none" class="table">
+            <c:forEach items="${dishes}" var="dish" >
+              <div>
+                <li>
+                  <input type="checkbox" id="dish-${dish.id}" name="id[]" value="${dish.id}" />
+                  <label for="dish-${dish.id}" ><c:out value="${dish.name}"/> </label>
+                </li>
+              </div>
+            </c:forEach>
+          </ul>
+          <button id="submitButton" class="btn btn-lg btn-primary btn-block" type="submit">Verwijder geselecteerde gerechten</button>
+          <br>
+        </form>
       </div>
-    </c:forEach>
-  </ul>
-  <button id="submitButton" type="submit">Remove selected dishes</button>
-</form>
+    </div>
+  </div >
+</div>
+
 <!-- footer -->
 <%@ include file="components/footer.jspf"%>
