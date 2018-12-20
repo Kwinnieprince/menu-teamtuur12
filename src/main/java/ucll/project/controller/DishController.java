@@ -24,6 +24,11 @@ public class DishController extends BaseController {
         this.categoryRepositorySql = categoryRepositorySql;
     }
 
+    public void showDishOverview(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("dishes", dishRepositorySql.getAllDishes());
+        request.getRequestDispatcher("/dishOverview.jsp").forward(request, response);
+    }
+
     public void  getAddDish(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("categories", categoryRepositorySql.getAll());
         request.getRequestDispatcher("/addDish.jsp").forward(request, response);

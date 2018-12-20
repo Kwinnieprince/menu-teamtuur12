@@ -146,6 +146,11 @@ public class FrontController extends HttpServlet {
             return;
         }
 
+        if(method.equals("GET") && requestResource.equals("dish") && requestAction.equals("overview")) {
+            dishController.showDishOverview(request, response);
+            return;
+        }
+
         if (method.equals("POST") && requestAction.equals("setCookie")) {
             setCookie(response, "language", request.getParameter("language"));
             if(requestResource.equals("weekMenu"))
