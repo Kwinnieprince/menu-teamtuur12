@@ -49,13 +49,15 @@ public class FrontController extends HttpServlet {
         properties.setProperty("sslmode", context.getInitParameter("sslmode"));
         properties.setProperty("url", context.getInitParameter("url"));
 
+
+        //DATABASES
         userRepository = new UserRepositoryDatabase(properties);
         dishRepositorySql = new DishRepositorySql(properties);
         categoryRepositorySql = new CategoryRepositorySql(properties);
+
+        //Controllers
         userController = new UserController(userRepository);
-
         dishController = new DishController(userRepository, dishRepositorySql, categoryRepositorySql);
-
         menuController = new MenuController(userRepository, properties);
     }
 
