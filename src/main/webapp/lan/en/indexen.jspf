@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-8 well">
             <br>
-            <h2 id="pageTitle">Day Menu campus {Campus ...}</h2>
+            <h2 id="pageTitle">Dagmenu campus {Campus ...}</h2>
             <a href="/weekMenu">Weekmenu</a>
             <div class="row">
                 <article class="col-sm">
@@ -10,40 +10,22 @@
                         <thead>
                         <tr>
                             <th scope="col"></th>
-                            <th scope="col" colspan="5" style="text-align: center">Tuesday</th>
+                            <th scope="col" colspan="5" style="text-align: center"><c:out value="${dagmenu.weekday}"/></th>
                         </tr>
                         </thead>
                         <thead>
                         <tr>
                             <th scope="col"></th>
-                            <th scope="col" colspan="5" style="text-align: center">18/12</th>
+                            <th scope="col" colspan="5" style="text-align: center"><c:out value="${dagmenu.date}"/></th>
                         </tr>
                         </thead>
+                        <c:forEach var="dish" items="${dagmenu.dishes}">
                         <tbody>
                         <tr>
-                            <th scope="row">Soup</th>
-                            <td colspan="5" style="text-align: center">Tomato soup</td>
+                            <th scope="row"><c:out value="${dish.description}"/></th>
+                            <td colspan="5" style="text-align: center"><b><c:out value="${dish.name}"/> </b> <br> <i>prijs student: <c:out value="${dish.internalPrice}"/> &euro; </i></td>
                         </tr>
-                        <tr>
-                            <th scope="row">Soup</th>
-                            <td colspan="5" style="text-align: center">Mushroom soup</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Pasta</th>
-                            <td colspan="5" style="text-align: center">Pasta bolognaise</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Day dish</th>
-                            <td colspan="5" style="text-align: center">Cordon bleu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Fish from the day</th>
-                            <td colspan="5" style="text-align: center">Visspies</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Snacks</th>
-                            <td colspan="5" style="text-align: center">Koninginnenhapje - Stewmeat - Meatballs in tomato sauce</td>
-                        </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </article>
