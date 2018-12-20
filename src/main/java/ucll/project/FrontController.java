@@ -186,6 +186,10 @@ public class FrontController extends HttpServlet {
             menuController.getMakeMenu(request, response);
         }
 
+        if (method.equals("POST") && requestResource.equals("menu") && requestAction.equals("updateCampus")) {
+            menuController.getMakeMenu(request, response);
+        }
+
         // if no route was found, show error. Make sure to return after each forward!
         request.getRequestDispatcher("/error.jsp").forward(request, response);
 

@@ -9,6 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
 
 public class MenuController extends BaseController {
@@ -24,7 +26,18 @@ public class MenuController extends BaseController {
     }
 
     public void  getMakeMenu(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("campuses", Campus.values());
+        String prevCampus = Campus.PROXIMUS.toString();
+        if (request.getParameter("campus") != null) {
+            prevCampus = request.getParameter("campus");
+            request.setAttribute("prevCampus", prevCampus);
+        } else {
+            request.setAttribute("prevCampus", Campus.PROXIMUS);
+        }
+
+        ArrayList<Campus> campuses = new ArrayList<>(Arrays.asList(Campus.values()));
+        campuses.remove(Campus.valueOf(prevCampus));
+
+        request.setAttribute("campuses", campuses);
         request.getRequestDispatcher("/makeMenu.jsp").forward(request, response);
     }
 }
