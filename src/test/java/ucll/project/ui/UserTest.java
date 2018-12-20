@@ -40,34 +40,6 @@ public class UserTest extends BaseUITest {
 
     @After
     public void deleteUser() {
-        /*
-         * TODO delete user
-         */
+       
     }
-
-//    @Test
-//    public void userSmokeTest() {
-//        SignUpPage signUpPage = new SignUpPage(driver);
-//        signUpPage.navigateTo();
-//        signUpPage.enterEmail(user.getEmail());
-//        signUpPage.enterUsername(user.getUserName());
-//        signUpPage.enterFirstName(user.getFirstName());
-//        signUpPage.enterLastName(user.getLastName());
-//        signUpPage.selectGender(user.getGender());
-//        signUpPage.selectRole(user.getRole());
-//        signUpPage.enterDateOfBirth("01/01/2000");
-//        signUpPage.enterPassword(password);
-//        signUpPage.enterRepeatPassword(password);
-//
-//        LoginPage loginPage = signUpPage.clickSubmitButton();
-//
-//        HomePage homePage = loginPage.loginAs(user.getUserName(), password);
-//        assertEquals("Logout, " + user.getUserName(), homePage.getLogoutLinkText());
-//        assertEquals("Logout, " + user.getUserName(), homePage.getLogoutLinkText());
-//
-//        homePage = homePage.clickLogoutLink();
-//        assertEquals("Dagmenu campus {Campus ...}", homePage.getPageTitle());
-//    }
-
-
 }
