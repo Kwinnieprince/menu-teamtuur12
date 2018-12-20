@@ -12,9 +12,9 @@
             <h2 id="pageTitle">Week menu campus {Campus ...}</h2> <!-- TODO get campus from enum -->
         </div>
     </div>
-    <a href="/index">Dagmenu</a>
     <div class="row">
         <article class="col-sm">
+            <a href="/index">Day menu</a>
             <table class="table">
                 <thead>
                 <tr>

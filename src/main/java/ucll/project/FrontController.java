@@ -32,8 +32,8 @@ public class FrontController extends HttpServlet {
     /* Controllers */
     private UserController userController;
     private DishController dishController;
-    private Properties properties;
     private MenuController menuController;
+    private Properties properties;
 
     public void init() throws ServletException {
         super.init();
@@ -49,7 +49,6 @@ public class FrontController extends HttpServlet {
 
         userRepository = new UserRepositoryDatabase(properties);
         dishRepositorySql = new DishRepositorySql(properties);
-
         userController = new UserController(userRepository);
         dishController = new DishController(userRepository, dishRepositorySql);
 
@@ -129,36 +128,52 @@ public class FrontController extends HttpServlet {
             dishController.postAddDish(request, response);
         }
 
-        if (method.equals("POST") && requestResource.equals("index") && requestAction.equals("cookies")) {
-            String lan = request.getParameter("language");
-            Cookie cookie = new Cookie("language", lan);
-            response.addCookie(cookie);
+        if (method.equals("POST") && requestAction.equals("setCookie")) {
+            setCookie(response, "language", request.getParameter("language"));
+            if(requestResource.equals("weekMenu"))
+                request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
+            else
+                request.getRequestDispatcher("/index.jsp").forward(request, response);
+
+            return;
+        }
+
+        if(requestAction.equals("changeCookie")) {
+            setCookie(response, "language", request.getParameter("language")); //Sets cookie
+
+            if(requestResource.equals("weekMenu")) { //Send redirect for weekMenu
+                String[] requestURL = String.valueOf(request.getRequestURL()).split("/w");
+                response.sendRedirect(requestURL[0] + "/" + requestResource);
+//                request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
+                return;
+            }
+            else { //Send redirect for index
+                String[] requestURL = String.valueOf(request.getRequestURL()).split("/i");
+                response.sendRedirect(requestURL[0] + "/" + requestResource);
+//                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                return;
+            }
+        }
+
+        if (method.equals("GET") && requestResource.equals("index")) {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
             return;
         }
 
-        if(method.equals("GET") && requestResource.equals("index") && requestAction.equals("cookies")) {
-            String lang = request.getParameter("language");
-            String other;
-            Cookie cookie = new Cookie("language", lang);
-            response.addCookie(cookie);
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-            return;
-        }
-
-        if(requestResource.equals("index") && requestAction.equals("weekMenu")) {
-
+        if(method.equals("GET") && requestResource.equals("weekMenu")){
             request.getRequestDispatcher("/weekMenu.jsp").forward(request, response);
         }
 
-        if (requestResource.equals("index")) {
-            request.setAttribute("menu", menuController.getMenuOfTheDay());
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-            return;
+        if (method.equals("GET") && requestResource.equals("menu") && requestAction.equals("make")) {
+            menuController.getMakeMenu(request, response);
         }
 
         // if no route was found, show error. Make sure to return after each forward!
         request.getRequestDispatcher("/error.jsp").forward(request, response);
 
+    }
+
+    private void setCookie(HttpServletResponse response, String cookieName, String cookieValue) {
+        response.addCookie(new Cookie(cookieName, cookieValue));
     }
 }
