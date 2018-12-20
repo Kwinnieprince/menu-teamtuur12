@@ -87,7 +87,7 @@ public class FrontController extends HttpServlet {
          *  requestResource=user
          *  requestAction=login
          */
-        
+
         if (request.getSession().getAttribute("userid") != null) {
             int userId = (int) request.getSession().getAttribute("userid");
             request.setAttribute("user", userRepository.get(userId));
@@ -152,6 +152,7 @@ public class FrontController extends HttpServlet {
         }
 
         if (requestResource.equals("index")) {
+            request.setAttribute("menu", menuController.getMenuOfTheDay());
             request.getRequestDispatcher("/index.jsp").forward(request, response);
             return;
         }
