@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DishController extends BaseController {
     private final CategoryRepositorySql categoryRepositorySql;
@@ -95,15 +96,19 @@ public class DishController extends BaseController {
         }
     }
 
-    //todo check if category equals categories in database.
     private void validateCategory (String category, ArrayList <String> errors){
+        ArrayList<String> nameList = new ArrayList<>();
+        List<Category> catlist = categoryRepositorySql.getAll();
+        for (int i = 0; i < catlist.size(); i++) {
+            nameList.add(catlist.get(i).getName());
+        }
         if (category == null) {
             errors.add("Category is null");
         } else if (category.isEmpty()) {
             errors.add("Category is empty");
         } else if (!category.matches(validPattern)) {
             errors.add("Invalid characters");
-        } else if (categoryRepositorySql.getAll().contains(category)) {
+        } else if (nameList.contains(category)) {
             errors.add("Category already exists");
         }
     }

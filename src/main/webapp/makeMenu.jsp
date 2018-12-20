@@ -22,12 +22,14 @@
         <div class="col-md-8 well">
             <br>
             <div>
-                <h2 id="pageTitle">Weekmenu campus </h2>
-                <select id="campus" class="form-control campus-select" name="campus" value="${campus}" required>
-                    <c:forEach var="camp" items="${campuses}">
-                        <option value="${camp}">${camp}</option>
-                    </c:forEach>
-                </select>
+                <h2 id="pageTitle">Weekmenu</h2>
+                <form method="post" action="/menu/make">
+                    <select id="campus" class="form-control campus-select" name="campus" onchange='if(campus.value != "${campuses[0]}") {campus.form.submit();}' value="${campus}" required>
+                        <c:forEach var="camp" items="${campuses}">
+                            <option value="${camp}">${camp}</option>
+                        </c:forEach>
+                    </select>
+                </form>
             </div>
         </div>
     </div>
